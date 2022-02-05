@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 73,
+            "activePatchIndex": 74,
             "patches": [
                 {
                     "date": 1643964816231,
@@ -300,6 +300,10 @@
                 {
                     "date": 1644078588580,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,8 @@\n     setTags(event.target.value);\n   };\n \n   const handleSearchFeeds = () => {\n-    console.log('TAGS ', tags);\n     onFetchFeeds(tags);\n   };\n \n   return (\n"
+                },
+                {
+                    "date": 1644079634291,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,10 +16,8 @@\n \n   const onFetchFeeds = useCallback(async (tags = '') => {\n     const result = await getRequest(`/feeds/${tags}`);\n \n-    console.log(result);\n-\n     if (result.status === 200 || result.status === 201) {\n       const response = result.data;\n       const { items } = response;\n \n"
                 }
             ],
             "date": 1643964816231,

@@ -17,8 +17,6 @@ const Feeds = () => {
   const onFetchFeeds = useCallback(async (tags = '') => {
     const result = await getRequest(`/feeds/${tags}`);
 
-    console.log(result);
-
     if (result.status === 200 || result.status === 201) {
       const response = result.data;
       const { items } = response;

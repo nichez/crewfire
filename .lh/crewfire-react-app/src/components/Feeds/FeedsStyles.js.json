@@ -1,0 +1,146 @@
+{
+    "sourceFile": "crewfire-react-app/src/components/Feeds/FeedsStyles.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 32,
+            "patches": [
+                {
+                    "date": 1643965194703,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1643965301110,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,8 @@\n import { makeStyles } from '@material-ui/core/styles';\n \n const useStyles = makeStyles((theme) => ({\n   container: {\n-    flexGrow: 1,\n     display: 'flex',\n     marginTop: 60,\n   },\n }));\n"
+                },
+                {
+                    "date": 1644060784237,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,12 @@\n import { makeStyles } from '@material-ui/core/styles';\n \n const useStyles = makeStyles((theme) => ({\n   container: {\n+    flexGrow: 1,\n     display: 'flex',\n     marginTop: 60,\n+    justifyContent: 'center'\n   },\n }));\n \n export default useStyles;\n"
+                },
+                {
+                    "date": 1644060795495,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n   container: {\n     flexGrow: 1,\n     display: 'flex',\n     marginTop: 60,\n-    justifyContent: 'center'\n+    alignItems: 'center'\n   },\n }));\n \n export default useStyles;\n"
+                },
+                {
+                    "date": 1644060860657,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,12 @@\n   container: {\n     flexGrow: 1,\n     display: 'flex',\n     marginTop: 60,\n-    alignItems: 'center'\n+    alignItems: 'center',\n   },\n+  item: {\n+    display: 'flex',\n+  }\n }));\n \n export default useStyles;\n"
+                },
+                {
+                    "date": 1644060870366,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,10 @@\n     alignItems: 'center',\n   },\n   item: {\n     display: 'flex',\n+    flex: 1,\n+    alignItems: 'center',\n   }\n }));\n \n export default useStyles;\n"
+                },
+                {
+                    "date": 1644060889431,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,17 +1,18 @@\n import { makeStyles } from '@material-ui/core/styles';\n \n const useStyles = makeStyles((theme) => ({\n   container: {\n-    flexGrow: 1,\n+    flex: 1,\n     display: 'flex',\n     marginTop: 60,\n     alignItems: 'center',\n   },\n   item: {\n     display: 'flex',\n     flex: 1,\n     alignItems: 'center',\n+    justifyContent: 'center'\n   }\n }));\n \n export default useStyles;\n"
+                },
+                {
+                    "date": 1644060899268,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n   item: {\n     display: 'flex',\n     flex: 1,\n     alignItems: 'center',\n-    justifyContent: 'center'\n+    // justifyContent: 'center'\n   }\n }));\n \n export default useStyles;\n"
+                },
+                {
+                    "date": 1644060917689,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n   container: {\n     flex: 1,\n     display: 'flex',\n     marginTop: 60,\n+    width: '100%',\n     alignItems: 'center',\n   },\n   item: {\n     display: 'flex',\n"
+                },
+                {
+                    "date": 1644060924086,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n     display: 'flex',\n     marginTop: 60,\n     width: '100%',\n     alignItems: 'center',\n+    ustifyContent: 'center'\n   },\n   item: {\n     display: 'flex',\n     flex: 1,\n"
+                },
+                {
+                    "date": 1644060932549,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n     display: 'flex',\n     marginTop: 60,\n     width: '100%',\n     alignItems: 'center',\n-    ustifyContent: 'center'\n+    justifyContent: 'center'\n   },\n   item: {\n     display: 'flex',\n     flex: 1,\n"
+                },
+                {
+                    "date": 1644061016701,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n   item: {\n     display: 'flex',\n     flex: 1,\n     alignItems: 'center',\n-    // justifyContent: 'center'\n+    justifyContent: 'center'\n   }\n }));\n \n export default useStyles;\n"
+                },
+                {
+                    "date": 1644061042350,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n     width: '100%',\n     alignItems: 'center',\n     justifyContent: 'center'\n   },\n-  item: {\n+  grid: {\n     display: 'flex',\n     flex: 1,\n     alignItems: 'center',\n     justifyContent: 'center'\n"
+                },
+                {
+                    "date": 1644061047632,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,15 +6,14 @@\n     display: 'flex',\n     marginTop: 60,\n     width: '100%',\n     alignItems: 'center',\n-    justifyContent: 'center'\n+    justifyContent: 'center',\n   },\n   grid: {\n     display: 'flex',\n-    flex: 1,\n     alignItems: 'center',\n-    justifyContent: 'center'\n-  }\n+    justifyContent: 'center',\n+  },\n }));\n \n export default useStyles;\n"
+                },
+                {
+                    "date": 1644061077632,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n     width: '100%',\n     alignItems: 'center',\n     justifyContent: 'center',\n   },\n-  grid: {\n+  item: {\n     display: 'flex',\n     alignItems: 'center',\n     justifyContent: 'center',\n   },\n"
+                },
+                {
+                    "date": 1644061091030,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,10 @@\n     alignItems: 'center',\n     justifyContent: 'center',\n   },\n   item: {\n+    flex: 1,\n+    width: '100%',\n     display: 'flex',\n     alignItems: 'center',\n     justifyContent: 'center',\n   },\n"
+                },
+                {
+                    "date": 1644061247043,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,10 +9,8 @@\n     alignItems: 'center',\n     justifyContent: 'center',\n   },\n   item: {\n-    flex: 1,\n-    width: '100%',\n     display: 'flex',\n     alignItems: 'center',\n     justifyContent: 'center',\n   },\n"
+                },
+                {
+                    "date": 1644061325658,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,11 +4,8 @@\n   container: {\n     flex: 1,\n     display: 'flex',\n     marginTop: 60,\n-    width: '100%',\n-    alignItems: 'center',\n-    justifyContent: 'center',\n   },\n   item: {\n     display: 'flex',\n     alignItems: 'center',\n"
+                },
+                {
+                    "date": 1644067071679,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n   container: {\n     flex: 1,\n     display: 'flex',\n     marginTop: 60,\n+    flexDirection: 'row'\n   },\n   item: {\n     display: 'flex',\n     alignItems: 'center',\n"
+                },
+                {
+                    "date": 1644067077544,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n   container: {\n     flex: 1,\n     display: 'flex',\n     marginTop: 60,\n-    flexDirection: 'row'\n+    flexDirection: 'column'\n   },\n   item: {\n     display: 'flex',\n     alignItems: 'center',\n"
+                },
+                {
+                    "date": 1644067097579,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,14 +4,17 @@\n   container: {\n     flex: 1,\n     display: 'flex',\n     marginTop: 60,\n-    flexDirection: 'column'\n+    flexDirection: 'column',\n   },\n   item: {\n     display: 'flex',\n     alignItems: 'center',\n     justifyContent: 'center',\n   },\n+  searchInput: {\n+    marginBottom: 20,\n+  },\n }));\n \n export default useStyles;\n"
+                },
+                {
+                    "date": 1644067154149,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n     alignItems: 'center',\n     justifyContent: 'center',\n   },\n   searchInput: {\n-    marginBottom: 20,\n+    marginBottom: 30,\n   },\n }));\n \n export default useStyles;\n"
+                },
+                {
+                    "date": 1644067251528,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,13 @@\n     display: 'flex',\n     alignItems: 'center',\n     justifyContent: 'center',\n   },\n+  searchContainer: {\n+    display: 'flex',\n+    alignItems: 'center',\n+    justifyContent: 'center',\n+  },\n   searchInput: {\n     marginBottom: 30,\n   },\n }));\n"
+                },
+                {
+                    "date": 1644067260805,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     justifyContent: 'center',\n   },\n   searchContainer: {\n     display: 'flex',\n-    alignItems: 'center',\n+    alignItems: 'flex-start',\n     justifyContent: 'center',\n   },\n   searchInput: {\n     marginBottom: 30,\n"
+                },
+                {
+                    "date": 1644067266454,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     justifyContent: 'center',\n   },\n   searchContainer: {\n     display: 'flex',\n-    alignItems: 'flex-start',\n+    alignItems: 'flex-end',\n     justifyContent: 'center',\n   },\n   searchInput: {\n     marginBottom: 30,\n"
+                },
+                {
+                    "date": 1644067278064,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,10 +13,10 @@\n     justifyContent: 'center',\n   },\n   searchContainer: {\n     display: 'flex',\n-    alignItems: 'flex-end',\n-    justifyContent: 'center',\n+    alignItems: 'center',\n+    justifyContent: 'flex-start',\n   },\n   searchInput: {\n     marginBottom: 30,\n   },\n"
+                },
+                {
+                    "date": 1644067311349,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n     alignItems: 'center',\n     justifyContent: 'flex-start',\n   },\n   searchInput: {\n-    marginBottom: 30,\n+    margin: '30',\n   },\n }));\n \n export default useStyles;\n"
+                },
+                {
+                    "date": 1644067330236,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n     alignItems: 'center',\n     justifyContent: 'flex-start',\n   },\n   searchInput: {\n-    margin: '30',\n+    margin: '0 10px 30px 0',\n   },\n }));\n \n export default useStyles;\n"
+                },
+                {
+                    "date": 1644067346550,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n     alignItems: 'center',\n     justifyContent: 'flex-start',\n   },\n   searchInput: {\n-    margin: '0 10px 30px 0',\n+    margin: '0 10px 30px 0px',\n   },\n }));\n \n export default useStyles;\n"
+                },
+                {
+                    "date": 1644067364362,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n     alignItems: 'center',\n     justifyContent: 'flex-start',\n   },\n   searchInput: {\n-    margin: '0 10px 30px 0px',\n+    margin: '0 10px 30px',\n   },\n }));\n \n export default useStyles;\n"
+                },
+                {
+                    "date": 1644067370358,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n     alignItems: 'center',\n     justifyContent: 'flex-start',\n   },\n   searchInput: {\n-    margin: '0 10px 30px',\n+    margin: '0px 10px 30px',\n   },\n }));\n \n export default useStyles;\n"
+                },
+                {
+                    "date": 1644067380497,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n     alignItems: 'center',\n     justifyContent: 'flex-start',\n   },\n   searchInput: {\n-    margin: '0px 10px 30px',\n+    margin: '0 10px 30px 0',\n   },\n }));\n \n export default useStyles;\n"
+                },
+                {
+                    "date": 1644067388142,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n     alignItems: 'center',\n     justifyContent: 'flex-start',\n   },\n   searchInput: {\n-    margin: '0 10px 30px 0',\n+    margin: '0 20px 30px 0',\n   },\n }));\n \n export default useStyles;\n"
+                }
+            ],
+            "date": 1643965194703,
+            "name": "Commit-0",
+            "content": "import { makeStyles } from '@material-ui/core/styles';\n\nconst useStyles = makeStyles((theme) => ({\n  container: {\n    flexGrow: 1,\n    display: 'flex',\n    marginTop: 60,\n  },\n}));\n\nexport default useStyles;\n"
+        }
+    ]
+}

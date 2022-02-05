@@ -1,0 +1,310 @@
+{
+    "sourceFile": "crewfire-react-app/src/components/Feeds/Feeds.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 73,
+            "patches": [
+                {
+                    "date": 1643964816231,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1643965249152,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,11 @@\n import React from 'react';\n \n+import useStyles from './FeedsStyles';\n+\n const Feeds = () => {\n-  return <div>Feeds</div>;\n+  const classes = useStyles();\n+\n+  return <div className={classes.container}>Feeds</div>;\n };\n \n export default Feeds;\n"
+                },
+                {
+                    "date": 1643965292484,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,12 @@\n import React from 'react';\n+import { Container } from '@material-ui/core';\n \n import useStyles from './FeedsStyles';\n \n const Feeds = () => {\n   const classes = useStyles();\n \n-  return <div className={classes.container}>Feeds</div>;\n+  return <Container>Feeds</Container>;\n };\n \n export default Feeds;\n"
+                },
+                {
+                    "date": 1643965471638,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,26 @@\n-import React from 'react';\n+import React, { useState, useEffect, useCallback } from 'react';\n import { Container } from '@material-ui/core';\n \n import useStyles from './FeedsStyles';\n+import { getRequest } from '../../services/httpService';\n \n const Feeds = () => {\n   const classes = useStyles();\n+  const [feeds, setFeeds] = useState([]);\n \n-  return <Container>Feeds</Container>;\n+  useEffect(() => {\n+    onFetchFeeds();\n+  }, []);\n+\n+  const onFetchFeeds = useCallback(async () => {\n+    const result = await getRequest('/feeds');\n+    console.log('result feeds ', feeds);\n+    if (result.status === 200) {\n+      setFeeds(result.data);\n+    }\n+  }, [feeds]);\n+\n+  return <Container className={classes.container}>Feeds</Container>;\n };\n \n export default Feeds;\n"
+                },
+                {
+                    "date": 1643965520203,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n     console.log('result feeds ', feeds);\n     if (result.status === 200) {\n       setFeeds(result.data);\n     }\n-  }, [feeds]);\n+  }, []);\n \n   return <Container className={classes.container}>Feeds</Container>;\n };\n \n"
+                },
+                {
+                    "date": 1643965527347,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,13 +13,13 @@\n   }, []);\n \n   const onFetchFeeds = useCallback(async () => {\n     const result = await getRequest('/feeds');\n-    console.log('result feeds ', feeds);\n+    console.log('result feeds ', result);\n     if (result.status === 200) {\n       setFeeds(result.data);\n     }\n-  }, []);\n+  }, [feeds]);\n \n   return <Container className={classes.container}>Feeds</Container>;\n };\n \n"
+                },
+                {
+                    "date": 1643965576110,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,13 +13,16 @@\n   }, []);\n \n   const onFetchFeeds = useCallback(async () => {\n     const result = await getRequest('/feeds');\n-    console.log('result feeds ', result);\n+    let response = result.data;\n+\n+    console.log(JSON.parse(response));\n+    \n     if (result.status === 200) {\n       setFeeds(result.data);\n     }\n-  }, [feeds]);\n+  }, []);\n \n   return <Container className={classes.container}>Feeds</Container>;\n };\n \n"
+                },
+                {
+                    "date": 1643965603299,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,12 +13,12 @@\n   }, []);\n \n   const onFetchFeeds = useCallback(async () => {\n     const result = await getRequest('/feeds');\n-    let response = result.data;\n+    const response = result.data;\n \n-    console.log(JSON.parse(response));\n-    \n+    console.log(response);\n+\n     if (result.status === 200) {\n       setFeeds(result.data);\n     }\n   }, []);\n"
+                },
+                {
+                    "date": 1643965614196,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n   const onFetchFeeds = useCallback(async () => {\n     const result = await getRequest('/feeds');\n     const response = result.data;\n \n-    console.log(response);\n+    console.log(response.json());\n \n     if (result.status === 200) {\n       setFeeds(result.data);\n     }\n"
+                },
+                {
+                    "date": 1643965629614,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n   const onFetchFeeds = useCallback(async () => {\n     const result = await getRequest('/feeds');\n     const response = result.data;\n \n-    console.log(response.json());\n+    console.log(JSON.stringify(response));\n \n     if (result.status === 200) {\n       setFeeds(result.data);\n     }\n"
+                },
+                {
+                    "date": 1643965661699,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n   const onFetchFeeds = useCallback(async () => {\n     const result = await getRequest('/feeds');\n     const response = result.data;\n \n-    console.log(JSON.stringify(response));\n+    console.log(JSON.parse(response));\n \n     if (result.status === 200) {\n       setFeeds(result.data);\n     }\n"
+                },
+                {
+                    "date": 1643965768646,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,11 +13,11 @@\n   }, []);\n \n   const onFetchFeeds = useCallback(async () => {\n     const result = await getRequest('/feeds');\n-    const response = result.data;\n+    const response = JSON.stringify(result.data);;\n \n-    console.log(JSON.parse(response));\n+    console.log(response);\n \n     if (result.status === 200) {\n       setFeeds(result.data);\n     }\n"
+                },
+                {
+                    "date": 1643965779280,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n   const onFetchFeeds = useCallback(async () => {\n     const result = await getRequest('/feeds');\n     const response = JSON.stringify(result.data);;\n \n-    console.log(response);\n+    console.log(response.items);\n \n     if (result.status === 200) {\n       setFeeds(result.data);\n     }\n"
+                },
+                {
+                    "date": 1643965792257,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n   const onFetchFeeds = useCallback(async () => {\n     const result = await getRequest('/feeds');\n     const response = JSON.stringify(result.data);;\n \n-    console.log(response.items);\n+    console.log(response.json());\n \n     if (result.status === 200) {\n       setFeeds(result.data);\n     }\n"
+                },
+                {
+                    "date": 1643965800776,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n   const onFetchFeeds = useCallback(async () => {\n     const result = await getRequest('/feeds');\n     const response = JSON.stringify(result.data);;\n \n-    console.log(response.json());\n+    console.log(JSON.parse(response));\n \n     if (result.status === 200) {\n       setFeeds(result.data);\n     }\n"
+                },
+                {
+                    "date": 1643965844661,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n   const onFetchFeeds = useCallback(async () => {\n     const result = await getRequest('/feeds');\n     const response = JSON.stringify(result.data);;\n \n-    console.log(JSON.parse(response));\n+    console.log(JSON.parse(response).items);\n \n     if (result.status === 200) {\n       setFeeds(result.data);\n     }\n"
+                },
+                {
+                    "date": 1643965857156,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n   const onFetchFeeds = useCallback(async () => {\n     const result = await getRequest('/feeds');\n     const response = JSON.stringify(result.data);;\n \n-    console.log(JSON.parse(response).items);\n+    console.log(JSON.parse(response.items));\n \n     if (result.status === 200) {\n       setFeeds(result.data);\n     }\n"
+                },
+                {
+                    "date": 1643965866703,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n   const onFetchFeeds = useCallback(async () => {\n     const result = await getRequest('/feeds');\n     const response = JSON.stringify(result.data);;\n \n-    console.log(JSON.parse(response.items));\n+    console.log(response);\n \n     if (result.status === 200) {\n       setFeeds(result.data);\n     }\n"
+                },
+                {
+                    "date": 1644051508828,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n     onFetchFeeds();\n   }, []);\n \n   const onFetchFeeds = useCallback(async () => {\n-    const result = await getRequest('/feeds');\n+    const result = await getRequest('/services/feeds/photos_public.gne?format=json');\n     const response = JSON.stringify(result.data);;\n \n     console.log(response);\n \n"
+                },
+                {
+                    "date": 1644051547854,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n     onFetchFeeds();\n   }, []);\n \n   const onFetchFeeds = useCallback(async () => {\n-    const result = await getRequest('/services/feeds/photos_public.gne?format=json');\n+    const result = await getRequest('/feeds');\n     const response = JSON.stringify(result.data);;\n \n     console.log(response);\n \n"
+                },
+                {
+                    "date": 1644051725160,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n   }, []);\n \n   const onFetchFeeds = useCallback(async () => {\n     const result = await getRequest('/feeds');\n-    const response = JSON.stringify(result.data);;\n+    const response = result.data;\n \n     console.log(response);\n \n     if (result.status === 200) {\n"
+                },
+                {
+                    "date": 1644051776286,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n   const onFetchFeeds = useCallback(async () => {\n     const result = await getRequest('/feeds');\n     const response = result.data;\n \n-    console.log(response);\n+    console.log(typeof response);\n \n     if (result.status === 200) {\n       setFeeds(result.data);\n     }\n"
+                },
+                {
+                    "date": 1644051816681,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,12 @@\n     const response = result.data;\n \n     console.log(typeof response);\n \n+    let mySubString = response.substring(response.indexOf('(') + 1, response.lastIndexOf(')'));\n+\n+    console.log(mySubString);\n+\n     if (result.status === 200) {\n       setFeeds(result.data);\n     }\n   }, []);\n"
+                },
+                {
+                    "date": 1644051841186,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,10 +18,11 @@\n \n     console.log(typeof response);\n \n     let mySubString = response.substring(response.indexOf('(') + 1, response.lastIndexOf(')'));\n+    let parsed = JSON.parse(mySubString);\n \n-    console.log(mySubString);\n+    console.log(parsed);\n \n     if (result.status === 200) {\n       setFeeds(result.data);\n     }\n"
+                },
+                {
+                    "date": 1644052443523,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,17 +13,14 @@\n   }, []);\n \n   const onFetchFeeds = useCallback(async () => {\n     const result = await getRequest('/feeds');\n-    const response = result.data;\n \n-    console.log(typeof response);\n+    const response = result.data.substring(result.data.indexOf('(') + 1, result.data.lastIndexOf(')'));\n+    const parsedResponse = JSON.parse(response);\n \n-    let mySubString = response.substring(response.indexOf('(') + 1, response.lastIndexOf(')'));\n-    let parsed = JSON.parse(mySubString);\n+    console.log(parsedResponse);\n \n-    console.log(parsed);\n-\n     if (result.status === 200) {\n       setFeeds(result.data);\n     }\n   }, []);\n"
+                },
+                {
+                    "date": 1644060485641,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import React, { useState, useEffect, useCallback } from 'react';\n-import { Container } from '@material-ui/core';\n+import { Container< Grid } from '@material-ui/core';\n \n import useStyles from './FeedsStyles';\n import { getRequest } from '../../services/httpService';\n \n@@ -24,8 +24,23 @@\n       setFeeds(result.data);\n     }\n   }, []);\n \n-  return <Container className={classes.container}>Feeds</Container>;\n+  return <Container className={classes.container}>\n+    <Grid container spacing={2}>\n+  <Grid item xs={6} md={8}>\n+    1\n+  </Grid>\n+  <Grid item xs={6} md={4}>\n+    2\n+  </Grid>\n+  <Grid item xs={6} md={4}>\n+    3\n+  </Grid>\n+  <Grid item xs={6} md={8}>\n+    4\n+  </Grid>\n+</Grid>\n+  </Container>;\n };\n \n export default Feeds;\n"
+                },
+                {
+                    "date": 1644060507866,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import React, { useState, useEffect, useCallback } from 'react';\n-import { Container< Grid } from '@material-ui/core';\n+import { Container, Grid } from '@material-ui/core';\n \n import useStyles from './FeedsStyles';\n import { getRequest } from '../../services/httpService';\n \n@@ -14,9 +14,12 @@\n \n   const onFetchFeeds = useCallback(async () => {\n     const result = await getRequest('/feeds');\n \n-    const response = result.data.substring(result.data.indexOf('(') + 1, result.data.lastIndexOf(')'));\n+    const response = result.data.substring(\n+      result.data.indexOf('(') + 1,\n+      result.data.lastIndexOf(')')\n+    );\n     const parsedResponse = JSON.parse(response);\n \n     console.log(parsedResponse);\n \n@@ -24,23 +27,25 @@\n       setFeeds(result.data);\n     }\n   }, []);\n \n-  return <Container className={classes.container}>\n-    <Grid container spacing={2}>\n-  <Grid item xs={6} md={8}>\n-    1\n-  </Grid>\n-  <Grid item xs={6} md={4}>\n-    2\n-  </Grid>\n-  <Grid item xs={6} md={4}>\n-    3\n-  </Grid>\n-  <Grid item xs={6} md={8}>\n-    4\n-  </Grid>\n-</Grid>\n-  </Container>;\n+  return (\n+    <Container className={classes.container}>\n+      <Grid container spacing={2}>\n+        <Grid item xs={6} md={8}>\n+          1\n+        </Grid>\n+        <Grid item xs={6} md={4}>\n+          2\n+        </Grid>\n+        <Grid item xs={6} md={4}>\n+          3\n+        </Grid>\n+        <Grid item xs={6} md={8}>\n+          4\n+        </Grid>\n+      </Grid>\n+    </Container>\n+  );\n };\n \n export default Feeds;\n"
+                },
+                {
+                    "date": 1644060713487,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n import { Container, Grid } from '@material-ui/core';\n \n import useStyles from './FeedsStyles';\n import { getRequest } from '../../services/httpService';\n+import FeedItem from '../FeedItem/FeedItem';\n \n const Feeds = () => {\n   const classes = useStyles();\n   const [feeds, setFeeds] = useState([]);\n@@ -31,9 +32,9 @@\n   return (\n     <Container className={classes.container}>\n       <Grid container spacing={2}>\n         <Grid item xs={6} md={8}>\n-          1\n+          <FeedItem />\n         </Grid>\n         <Grid item xs={6} md={4}>\n           2\n         </Grid>\n"
+                },
+                {
+                    "date": 1644060735485,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,15 +35,15 @@\n         <Grid item xs={6} md={8}>\n           <FeedItem />\n         </Grid>\n         <Grid item xs={6} md={4}>\n-          2\n+          <FeedItem />\n         </Grid>\n         <Grid item xs={6} md={4}>\n-          3\n+          <FeedItem />\n         </Grid>\n         <Grid item xs={6} md={8}>\n-          4\n+          <FeedItem />\n         </Grid>\n       </Grid>\n     </Container>\n   );\n"
+                },
+                {
+                    "date": 1644060753382,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,18 +31,18 @@\n \n   return (\n     <Container className={classes.container}>\n       <Grid container spacing={2}>\n-        <Grid item xs={6} md={8}>\n+        <Grid item xs={12} md={3}>\n           <FeedItem />\n         </Grid>\n-        <Grid item xs={6} md={4}>\n+        <Grid item xs={12} md={3}>\n           <FeedItem />\n         </Grid>\n-        <Grid item xs={6} md={4}>\n+        <Grid item xs={12} md={3}>\n           <FeedItem />\n         </Grid>\n-        <Grid item xs={6} md={8}>\n+        <Grid item xs={12} md={3}>\n           <FeedItem />\n         </Grid>\n       </Grid>\n     </Container>\n"
+                },
+                {
+                    "date": 1644060825101,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,24 +29,22 @@\n     }\n   }, []);\n \n   return (\n-    <Container className={classes.container}>\n-      <Grid container spacing={2}>\n-        <Grid item xs={12} md={3}>\n-          <FeedItem />\n-        </Grid>\n-        <Grid item xs={12} md={3}>\n-          <FeedItem />\n-        </Grid>\n-        <Grid item xs={12} md={3}>\n-          <FeedItem />\n-        </Grid>\n-        <Grid item xs={12} md={3}>\n-          <FeedItem />\n-        </Grid>\n+    <Grid container spacing={2} className={classes.container}>\n+      <Grid item xs={12} md={3}>\n+        <FeedItem />\n       </Grid>\n-    </Container>\n+      <Grid item xs={12} md={3}>\n+        <FeedItem />\n+      </Grid>\n+      <Grid item xs={12} md={3}>\n+        <FeedItem />\n+      </Grid>\n+      <Grid item xs={12} md={3}>\n+        <FeedItem />\n+      </Grid>\n+    </Grid>\n   );\n };\n \n export default Feeds;\n"
+                },
+                {
+                    "date": 1644060849310,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n   }, []);\n \n   return (\n     <Grid container spacing={2} className={classes.container}>\n-      <Grid item xs={12} md={3}>\n+      <Grid item xs={12} md={3} className={classes.item} >\n         <FeedItem />\n       </Grid>\n       <Grid item xs={12} md={3}>\n         <FeedItem />\n"
+                },
+                {
+                    "date": 1644060947459,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,22 +29,24 @@\n     }\n   }, []);\n \n   return (\n-    <Grid container spacing={2} className={classes.container}>\n-      <Grid item xs={12} md={3} className={classes.item} >\n-        <FeedItem />\n+    <Container className={classes.container}>\n+      <Grid container spacing={2}>\n+        <Grid item xs={12} md={3}>\n+          <FeedItem />\n+        </Grid>\n+        <Grid item xs={12} md={3}>\n+          <FeedItem />\n+        </Grid>\n+        <Grid item xs={12} md={3}>\n+          <FeedItem />\n+        </Grid>\n+        <Grid item xs={12} md={3}>\n+          <FeedItem />\n+        </Grid>\n       </Grid>\n-      <Grid item xs={12} md={3}>\n-        <FeedItem />\n-      </Grid>\n-      <Grid item xs={12} md={3}>\n-        <FeedItem />\n-      </Grid>\n-      <Grid item xs={12} md={3}>\n-        <FeedItem />\n-      </Grid>\n-    </Grid>\n+    </Container>\n   );\n };\n \n export default Feeds;\n"
+                },
+                {
+                    "date": 1644061030015,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n \n   return (\n     <Container className={classes.container}>\n       <Grid container spacing={2}>\n-        <Grid item xs={12} md={3}>\n+        <Grid item xs={12} md={3} className={classes.item}>\n           <FeedItem />\n         </Grid>\n         <Grid item xs={12} md={3}>\n           <FeedItem />\n"
+                },
+                {
+                    "date": 1644061037683,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,10 +30,10 @@\n   }, []);\n \n   return (\n     <Container className={classes.container}>\n-      <Grid container spacing={2}>\n-        <Grid item xs={12} md={3} className={classes.item}>\n+      <Grid container spacing={2} className={classes.grid}>\n+        <Grid item xs={12} md={3}>\n           <FeedItem />\n         </Grid>\n         <Grid item xs={12} md={3}>\n           <FeedItem />\n"
+                },
+                {
+                    "date": 1644061074513,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,10 +30,10 @@\n   }, []);\n \n   return (\n     <Container className={classes.container}>\n-      <Grid container spacing={2} className={classes.grid}>\n-        <Grid item xs={12} md={3}>\n+      <Grid container spacing={2}>\n+        <Grid item xs={12} md={3} className={classes.item}>\n           <FeedItem />\n         </Grid>\n         <Grid item xs={12} md={3}>\n           <FeedItem />\n"
+                },
+                {
+                    "date": 1644061104531,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n   }, []);\n \n   return (\n     <Container className={classes.container}>\n-      <Grid container spacing={2}>\n+      <Grid container spacing={2} className={classes.container}>\n         <Grid item xs={12} md={3} className={classes.item}>\n           <FeedItem />\n         </Grid>\n         <Grid item xs={12} md={3}>\n"
+                },
+                {
+                    "date": 1644061110352,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,24 +29,22 @@\n     }\n   }, []);\n \n   return (\n-    <Container className={classes.container}>\n-      <Grid container spacing={2} className={classes.container}>\n-        <Grid item xs={12} md={3} className={classes.item}>\n-          <FeedItem />\n-        </Grid>\n-        <Grid item xs={12} md={3}>\n-          <FeedItem />\n-        </Grid>\n-        <Grid item xs={12} md={3}>\n-          <FeedItem />\n-        </Grid>\n-        <Grid item xs={12} md={3}>\n-          <FeedItem />\n-        </Grid>\n+    <Grid container spacing={2} className={classes.container}>\n+      <Grid item xs={12} md={3} className={classes.item}>\n+        <FeedItem />\n       </Grid>\n-    </Container>\n+      <Grid item xs={12} md={3}>\n+        <FeedItem />\n+      </Grid>\n+      <Grid item xs={12} md={3}>\n+        <FeedItem />\n+      </Grid>\n+      <Grid item xs={12} md={3}>\n+        <FeedItem />\n+      </Grid>\n+    </Grid>\n   );\n };\n \n export default Feeds;\n"
+                },
+                {
+                    "date": 1644061118496,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,15 +33,15 @@\n     <Grid container spacing={2} className={classes.container}>\n       <Grid item xs={12} md={3} className={classes.item}>\n         <FeedItem />\n       </Grid>\n-      <Grid item xs={12} md={3}>\n+      <Grid item xs={12} md={3} className={classes.item}>\n         <FeedItem />\n       </Grid>\n-      <Grid item xs={12} md={3}>\n+      <Grid item xs={12} md={3} className={classes.item}>\n         <FeedItem />\n       </Grid>\n-      <Grid item xs={12} md={3}>\n+      <Grid item xs={12} md={3} className={classes.item}>\n         <FeedItem />\n       </Grid>\n     </Grid>\n   );\n"
+                },
+                {
+                    "date": 1644061152485,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,22 +29,24 @@\n     }\n   }, []);\n \n   return (\n-    <Grid container spacing={2} className={classes.container}>\n-      <Grid item xs={12} md={3} className={classes.item}>\n-        <FeedItem />\n+    <Container>\n+      <Grid container spacing={2}>\n+        <Grid item xs={12} md={3}>\n+          <FeedItem />\n+        </Grid>\n+        <Grid item xs={12} md={3}>\n+          <FeedItem />\n+        </Grid>\n+        <Grid item xs={12} md={3}>\n+          <FeedItem />\n+        </Grid>\n+        <Grid item xs={6} md={8}>\n+          <FeedItem />\n+        </Grid>\n       </Grid>\n-      <Grid item xs={12} md={3} className={classes.item}>\n-        <FeedItem />\n-      </Grid>\n-      <Grid item xs={12} md={3} className={classes.item}>\n-        <FeedItem />\n-      </Grid>\n-      <Grid item xs={12} md={3} className={classes.item}>\n-        <FeedItem />\n-      </Grid>\n-    </Grid>\n+    </Container>\n   );\n };\n \n export default Feeds;\n"
+                },
+                {
+                    "date": 1644061206556,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n   }, []);\n \n   return (\n     <Container>\n-      <Grid container spacing={2}>\n+      <Grid container spacing={2} xs={12}>\n         <Grid item xs={12} md={3}>\n           <FeedItem />\n         </Grid>\n         <Grid item xs={12} md={3}>\n"
+                },
+                {
+                    "date": 1644061213582,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n   }, []);\n \n   return (\n     <Container>\n-      <Grid container spacing={2} xs={12}>\n+      <Grid container spacing={2}>\n         <Grid item xs={12} md={3}>\n           <FeedItem />\n         </Grid>\n         <Grid item xs={12} md={3}>\n"
+                },
+                {
+                    "date": 1644061224712,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,9 @@\n         </Grid>\n         <Grid item xs={12} md={3}>\n           <FeedItem />\n         </Grid>\n-        <Grid item xs={6} md={8}>\n+        <Grid item xs={12} md={3}>\n           <FeedItem />\n         </Grid>\n       </Grid>\n     </Container>\n"
+                },
+                {
+                    "date": 1644061242025,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n \n   return (\n     <Container>\n       <Grid container spacing={2}>\n-        <Grid item xs={12} md={3}>\n+        <Grid item xs={12} md={3} className={classes.item}>\n           <FeedItem />\n         </Grid>\n         <Grid item xs={12} md={3}>\n           <FeedItem />\n"
+                },
+                {
+                    "date": 1644061266596,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,15 +34,15 @@\n       <Grid container spacing={2}>\n         <Grid item xs={12} md={3} className={classes.item}>\n           <FeedItem />\n         </Grid>\n-        <Grid item xs={12} md={3}>\n+        <Grid item xs={12} md={3} className={classes.item}>\n           <FeedItem />\n         </Grid>\n-        <Grid item xs={12} md={3}>\n+        <Grid item xs={12} md={3} className={classes.item}>\n           <FeedItem />\n         </Grid>\n-        <Grid item xs={12} md={3}>\n+        <Grid item xs={12} md={3} className={classes.item}>\n           <FeedItem />\n         </Grid>\n       </Grid>\n     </Container>\n"
+                },
+                {
+                    "date": 1644061291530,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,18 +31,18 @@\n \n   return (\n     <Container>\n       <Grid container spacing={2}>\n-        <Grid item xs={12} md={3} className={classes.item}>\n+        <Grid item xs={12} sm={6} md={3} className={classes.item}>\n           <FeedItem />\n         </Grid>\n-        <Grid item xs={12} md={3} className={classes.item}>\n+        <Grid item xs={12} sm={6} md={3} className={classes.item}>\n           <FeedItem />\n         </Grid>\n-        <Grid item xs={12} md={3} className={classes.item}>\n+        <Grid item xs={12} sm={6} md={3} className={classes.item}>\n           <FeedItem />\n         </Grid>\n-        <Grid item xs={12} md={3} className={classes.item}>\n+        <Grid item xs={12} sm={6} md={3} className={classes.item}>\n           <FeedItem />\n         </Grid>\n       </Grid>\n     </Container>\n"
+                },
+                {
+                    "date": 1644061330683,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n     }\n   }, []);\n \n   return (\n-    <Container>\n+    <Container className={classes.container}>\n       <Grid container spacing={2}>\n         <Grid item xs={12} sm={6} md={3} className={classes.item}>\n           <FeedItem />\n         </Grid>\n"
+                },
+                {
+                    "date": 1644061438905,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,10 +20,11 @@\n       result.data.indexOf('(') + 1,\n       result.data.lastIndexOf(')')\n     );\n     const parsedResponse = JSON.parse(response);\n+    const { items } = parsedResponse;\n \n-    console.log(parsedResponse);\n+    console.log(items);\n \n     if (result.status === 200) {\n       setFeeds(result.data);\n     }\n"
+                },
+                {
+                    "date": 1644061465898,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,10 @@\n \n   const onFetchFeeds = useCallback(async () => {\n     const result = await getRequest('/feeds');\n \n+    console.log(result.status);\n+\n     const response = result.data.substring(\n       result.data.indexOf('(') + 1,\n       result.data.lastIndexOf(')')\n     );\n"
+                },
+                {
+                    "date": 1644061505825,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,21 +15,18 @@\n \n   const onFetchFeeds = useCallback(async () => {\n     const result = await getRequest('/feeds');\n \n-    console.log(result.status);\n+    if (result.status === 200 || result.status === 201) {\n+      const response = result.data.substring(\n+        result.data.indexOf('(') + 1,\n+        result.data.lastIndexOf(')')\n+      );\n+      const parsedResponse = JSON.parse(response);\n+      const { items } = parsedResponse;\n \n-    const response = result.data.substring(\n-      result.data.indexOf('(') + 1,\n-      result.data.lastIndexOf(')')\n-    );\n-    const parsedResponse = JSON.parse(response);\n-    const { items } = parsedResponse;\n-\n-    console.log(items);\n-\n-    if (result.status === 200) {\n-      setFeeds(result.data);\n+      console.log(items);\n+      setFeeds(items);\n     }\n   }, []);\n \n   return (\n"
+                },
+                {
+                    "date": 1644061545271,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,20 +31,14 @@\n \n   return (\n     <Container className={classes.container}>\n       <Grid container spacing={2}>\n-        <Grid item xs={12} sm={6} md={3} className={classes.item}>\n-          <FeedItem />\n-        </Grid>\n-        <Grid item xs={12} sm={6} md={3} className={classes.item}>\n-          <FeedItem />\n-        </Grid>\n-        <Grid item xs={12} sm={6} md={3} className={classes.item}>\n-          <FeedItem />\n-        </Grid>\n-        <Grid item xs={12} sm={6} md={3} className={classes.item}>\n-          <FeedItem />\n-        </Grid>\n+        {feeds &&\n+          feeds.map((item) => (\n+            <Grid item xs={12} sm={6} md={3} className={classes.item}>\n+              <FeedItem item={item} />\n+            </Grid>\n+          ))}\n       </Grid>\n     </Container>\n   );\n };\n"
+                },
+                {
+                    "date": 1644061602310,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,16 @@\n     <Container className={classes.container}>\n       <Grid container spacing={2}>\n         {feeds &&\n           feeds.map((item) => (\n-            <Grid item xs={12} sm={6} md={3} className={classes.item}>\n+            <Grid\n+              item\n+              xs={12}\n+              sm={6}\n+              md={3}\n+              className={classes.item}\n+              key={item.author_id}\n+            >\n               <FeedItem item={item} />\n             </Grid>\n           ))}\n       </Grid>\n"
+                },
+                {
+                    "date": 1644062499065,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,9 @@\n             <Grid\n               item\n               xs={12}\n               sm={6}\n-              md={3}\n+              md={4}\n               className={classes.item}\n               key={item.author_id}\n             >\n               <FeedItem item={item} />\n"
+                },
+                {
+                    "date": 1644062508328,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,8 +38,9 @@\n               item\n               xs={12}\n               sm={6}\n               md={4}\n+              lg={3}\n               className={classes.item}\n               key={item.author_id}\n             >\n               <FeedItem item={item} />\n"
+                },
+                {
+                    "date": 1644067046608,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import React, { useState, useEffect, useCallback } from 'react';\n-import { Container, Grid } from '@material-ui/core';\n+import { Container, Grid, TextField } from '@material-ui/core';\n \n import useStyles from './FeedsStyles';\n import { getRequest } from '../../services/httpService';\n import FeedItem from '../FeedItem/FeedItem';\n@@ -30,8 +30,9 @@\n   }, []);\n \n   return (\n     <Container className={classes.container}>\n+      <TextField label=\"Search feeds\" />\n       <Grid container spacing={2}>\n         {feeds &&\n           feeds.map((item) => (\n             <Grid\n"
+                },
+                {
+                    "date": 1644067106280,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n   }, []);\n \n   return (\n     <Container className={classes.container}>\n-      <TextField label=\"Search feeds\" />\n+      <TextField label=\"Search feeds\" className={classes.searchInput} />\n       <Grid container spacing={2}>\n         {feeds &&\n           feeds.map((item) => (\n             <Grid\n"
+                },
+                {
+                    "date": 1644067125020,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n   }, []);\n \n   return (\n     <Container className={classes.container}>\n-      <TextField label=\"Search feeds\" className={classes.searchInput} />\n+      <div><TextField label=\"Search feeds\" className={classes.searchInput} /></div>\n       <Grid container spacing={2}>\n         {feeds &&\n           feeds.map((item) => (\n             <Grid\n"
+                },
+                {
+                    "date": 1644067201563,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import React, { useState, useEffect, useCallback } from 'react';\n-import { Container, Grid, TextField } from '@material-ui/core';\n+import { Container, Grid, TextField, Button } from '@material-ui/core';\n \n import useStyles from './FeedsStyles';\n import { getRequest } from '../../services/httpService';\n import FeedItem from '../FeedItem/FeedItem';\n@@ -30,9 +30,12 @@\n   }, []);\n \n   return (\n     <Container className={classes.container}>\n-      <div><TextField label=\"Search feeds\" className={classes.searchInput} /></div>\n+      <div>\n+        <TextField label='Search feeds' className={classes.searchInput} />\n+        <Button variant='contained'>Search</Button>\n+      </div>\n       <Grid container spacing={2}>\n         {feeds &&\n           feeds.map((item) => (\n             <Grid\n"
+                },
+                {
+                    "date": 1644067214713,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n   }, []);\n \n   return (\n     <Container className={classes.container}>\n-      <div>\n+      <div className={classes.searchContainer}>\n         <TextField label='Search feeds' className={classes.searchInput} />\n         <Button variant='contained'>Search</Button>\n       </div>\n       <Grid container spacing={2}>\n"
+                },
+                {
+                    "date": 1644067227778,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,11 @@\n   return (\n     <Container className={classes.container}>\n       <div className={classes.searchContainer}>\n         <TextField label='Search feeds' className={classes.searchInput} />\n-        <Button variant='contained'>Search</Button>\n+        <Button variant='contained' color='primary'>\n+          Search\n+        </Button>\n       </div>\n       <Grid container spacing={2}>\n         {feeds &&\n           feeds.map((item) => (\n"
+                },
+                {
+                    "date": 1644067293427,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n   return (\n     <Container className={classes.container}>\n       <div className={classes.searchContainer}>\n         <TextField label='Search feeds' className={classes.searchInput} />\n-        <Button variant='contained' color='primary'>\n+        <Button color='primary'>\n           Search\n         </Button>\n       </div>\n       <Grid container spacing={2}>\n"
+                },
+                {
+                    "date": 1644067517032,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,17 +15,18 @@\n \n   const onFetchFeeds = useCallback(async () => {\n     const result = await getRequest('/feeds');\n \n+    console.log(result);\n+\n     if (result.status === 200 || result.status === 201) {\n       const response = result.data.substring(\n         result.data.indexOf('(') + 1,\n         result.data.lastIndexOf(')')\n       );\n       const parsedResponse = JSON.parse(response);\n       const { items } = parsedResponse;\n \n-      console.log(items);\n       setFeeds(items);\n     }\n   }, []);\n \n"
+                },
+                {
+                    "date": 1644067626886,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,13 +18,9 @@\n \n     console.log(result);\n \n     if (result.status === 200 || result.status === 201) {\n-      const response = result.data.substring(\n-        result.data.indexOf('(') + 1,\n-        result.data.lastIndexOf(')')\n-      );\n-      const parsedResponse = JSON.parse(response);\n+      const parsedResponse = JSON.parse(result.data);\n       const { items } = parsedResponse;\n \n       setFeeds(items);\n     }\n"
+                },
+                {
+                    "date": 1644067642871,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,10 +18,10 @@\n \n     console.log(result);\n \n     if (result.status === 200 || result.status === 201) {\n-      const parsedResponse = JSON.parse(result.data);\n-      const { items } = parsedResponse;\n+      const response = result.data;\n+      const { items } = response;\n \n       setFeeds(items);\n     }\n   }, []);\n"
+                },
+                {
+                    "date": 1644067651572,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,10 +15,8 @@\n \n   const onFetchFeeds = useCallback(async () => {\n     const result = await getRequest('/feeds');\n \n-    console.log(result);\n-\n     if (result.status === 200 || result.status === 201) {\n       const response = result.data;\n       const { items } = response;\n \n"
+                },
+                {
+                    "date": 1644077103242,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,10 @@\n \n   const onFetchFeeds = useCallback(async () => {\n     const result = await getRequest('/feeds');\n \n+    console.log(result);\n+\n     if (result.status === 200 || result.status === 201) {\n       const response = result.data;\n       const { items } = response;\n \n"
+                },
+                {
+                    "date": 1644077468604,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,15 +7,16 @@\n \n const Feeds = () => {\n   const classes = useStyles();\n   const [feeds, setFeeds] = useState([]);\n+  const [tags, setTags] = useState('');\n \n   useEffect(() => {\n     onFetchFeeds();\n   }, []);\n \n   const onFetchFeeds = useCallback(async () => {\n-    const result = await getRequest('/feeds');\n+    const result = await getRequest('/feeds/');\n \n     console.log(result);\n \n     if (result.status === 200 || result.status === 201) {\n@@ -25,8 +26,21 @@\n       setFeeds(items);\n     }\n   }, []);\n \n+  const onFetchSearchedFeeds = useCallback(async (tags) => {\n+    const result = await getRequest(`/feeds/${tags}`);\n+\n+    console.log(result);\n+\n+    if (result.status === 200 || result.status === 201) {\n+      const response = result.data;\n+      const { items } = response;\n+\n+      setFeeds(items);\n+    }\n+  }, []);\n+\n   return (\n     <Container className={classes.container}>\n       <div className={classes.searchContainer}>\n         <TextField label='Search feeds' className={classes.searchInput} />\n"
+                },
+                {
+                    "date": 1644077495666,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n     onFetchFeeds();\n   }, []);\n \n   const onFetchFeeds = useCallback(async () => {\n-    const result = await getRequest('/feeds/');\n+    const result = await getRequest(`/feeds/${tags}`);\n \n     console.log(result);\n \n     if (result.status === 200 || result.status === 201) {\n"
+                },
+                {
+                    "date": 1644077569425,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,28 +26,22 @@\n       setFeeds(items);\n     }\n   }, []);\n \n-  const onFetchSearchedFeeds = useCallback(async (tags) => {\n-    const result = await getRequest(`/feeds/${tags}`);\n+  const onChangeTags = (event) => {\n+    setTags(event.target.value);\n+  };\n \n-    console.log(result);\n-\n-    if (result.status === 200 || result.status === 201) {\n-      const response = result.data;\n-      const { items } = response;\n-\n-      setFeeds(items);\n-    }\n-  }, []);\n-\n   return (\n     <Container className={classes.container}>\n       <div className={classes.searchContainer}>\n-        <TextField label='Search feeds' className={classes.searchInput} />\n-        <Button color='primary'>\n-          Search\n-        </Button>\n+        <TextField\n+          label='Search feeds'\n+          className={classes.searchInput}\n+          value={tags}\n+          onChange={onChangeTags}\n+        />\n+        <Button color='primary'>Search</Button>\n       </div>\n       <Grid container spacing={2}>\n         {feeds &&\n           feeds.map((item) => (\n"
+                },
+                {
+                    "date": 1644077635477,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,8 +30,12 @@\n   const onChangeTags = (event) => {\n     setTags(event.target.value);\n   };\n \n+  const handleSearchFeeds = () => {\n+    onFetchFeeds();\n+  };\n+\n   return (\n     <Container className={classes.container}>\n       <div className={classes.searchContainer}>\n         <TextField\n@@ -39,9 +43,11 @@\n           className={classes.searchInput}\n           value={tags}\n           onChange={onChangeTags}\n         />\n-        <Button color='primary'>Search</Button>\n+        <Button color='primary' onClick={handleSearchFeeds}>\n+          Search\n+        </Button>\n       </div>\n       <Grid container spacing={2}>\n         {feeds &&\n           feeds.map((item) => (\n"
+                },
+                {
+                    "date": 1644077644430,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,12 +30,8 @@\n   const onChangeTags = (event) => {\n     setTags(event.target.value);\n   };\n \n-  const handleSearchFeeds = () => {\n-    onFetchFeeds();\n-  };\n-\n   return (\n     <Container className={classes.container}>\n       <div className={classes.searchContainer}>\n         <TextField\n@@ -43,9 +39,9 @@\n           className={classes.searchInput}\n           value={tags}\n           onChange={onChangeTags}\n         />\n-        <Button color='primary' onClick={handleSearchFeeds}>\n+        <Button color='primary' onClick={onFetchFeeds}>\n           Search\n         </Button>\n       </div>\n       <Grid container spacing={2}>\n"
+                },
+                {
+                    "date": 1644077732605,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n   useEffect(() => {\n     onFetchFeeds();\n   }, []);\n \n-  const onFetchFeeds = useCallback(async () => {\n+  const onFetchFeeds = useCallback(async (tags = '') => {\n     const result = await getRequest(`/feeds/${tags}`);\n \n     console.log(result);\n \n@@ -30,8 +30,13 @@\n   const onChangeTags = (event) => {\n     setTags(event.target.value);\n   };\n \n+  const handleSearchFeeds = () => {\n+    console.log('TAGS ,', tags);\n+    onFetchFeeds(tags);\n+  };\n+\n   return (\n     <Container className={classes.container}>\n       <div className={classes.searchContainer}>\n         <TextField\n@@ -39,9 +44,9 @@\n           className={classes.searchInput}\n           value={tags}\n           onChange={onChangeTags}\n         />\n-        <Button color='primary' onClick={onFetchFeeds}>\n+        <Button color='primary' onClick={handleSearchFeeds}>\n           Search\n         </Button>\n       </div>\n       <Grid container spacing={2}>\n"
+                },
+                {
+                    "date": 1644078237645,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n     setTags(event.target.value);\n   };\n \n   const handleSearchFeeds = () => {\n-    console.log('TAGS ,', tags);\n+    console.log('TAGS ', tags);\n     onFetchFeeds(tags);\n   };\n \n   return (\n"
+                },
+                {
+                    "date": 1644078588580,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,8 @@\n     setTags(event.target.value);\n   };\n \n   const handleSearchFeeds = () => {\n-    console.log('TAGS ', tags);\n     onFetchFeeds(tags);\n   };\n \n   return (\n"
+                }
+            ],
+            "date": 1643964816231,
+            "name": "Commit-0",
+            "content": "import React from 'react';\n\nconst Feeds = () => {\n  return <div>Feeds</div>;\n};\n\nexport default Feeds;\n"
+        }
+    ]
+}

@@ -1,0 +1,42 @@
+{
+    "sourceFile": "crewfire-backend/app/routes/appRoutes.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1643932169930,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1643932233997,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,6 +2,6 @@\n \n const feedController = require('../controllers/feedController');\n \n module.exports = function (app) {\n-  app.route('/feeds').get(awaitHandlerFactory(artikalController.getAllArtikli));\n+  app.route('/feeds').get(awaitHandlerFactory(feedController.getAllFeeds));\n };\n"
+                },
+                {
+                    "date": 1643934370445,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n const awaitHandlerFactory = require('../middleware/awaitHandlerFactory.middleware');\n \n const feedController = require('../controllers/feedController');\n+const { getFeeds } = require('../controllers/feedController');\n \n module.exports = function (app) {\n-  app.route('/feeds').get(awaitHandlerFactory(feedController.getAllFeeds));\n+  app.route('/feeds').get(awaitHandlerFactory(getFeeds));\n };\n"
+                },
+                {
+                    "date": 1643934414488,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,6 +3,6 @@\n const feedController = require('../controllers/feedController');\n const { getFeeds } = require('../controllers/feedController');\n \n module.exports = function (app) {\n-  app.route('/feeds').get(awaitHandlerFactory(getFeeds));\n+  app.route('/feeds').get(getFeeds);\n };\n"
+                },
+                {
+                    "date": 1643934427010,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,6 +3,6 @@\n const feedController = require('../controllers/feedController');\n const { getFeeds } = require('../controllers/feedController');\n \n module.exports = function (app) {\n-  app.route('/feeds').get(getFeeds);\n+  app.route('/feeds').get(awaitHandlerFactory(getFeeds));\n };\n"
+                },
+                {
+                    "date": 1643934468553,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,7 @@\n const awaitHandlerFactory = require('../middleware/awaitHandlerFactory.middleware');\n \n const feedController = require('../controllers/feedController');\n-const { getFeeds } = require('../controllers/feedController');\n \n module.exports = function (app) {\n-  app.route('/feeds').get(awaitHandlerFactory(getFeeds));\n+  app.route('/feeds').get(awaitHandlerFactory(feedController.getAllFeeds));\n };\n"
+                },
+                {
+                    "date": 1644077328933,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,5 +3,6 @@\n const feedController = require('../controllers/feedController');\n \n module.exports = function (app) {\n   app.route('/feeds').get(awaitHandlerFactory(feedController.getAllFeeds));\n+  app.route('/feeds/:tags').get(awaitHandlerFactory(feedController.getSearchedFeeds));\n };\n"
+                }
+            ],
+            "date": 1643932169930,
+            "name": "Commit-0",
+            "content": "const awaitHandlerFactory = require('../middleware/awaitHandlerFactory.middleware');\n\nconst feedController = require('../controllers/feedController');\n\nmodule.exports = function (app) {\n  app.route('/feeds').get(awaitHandlerFactory(artikalController.getAllArtikli));\n};\n"
+        }
+    ]
+}

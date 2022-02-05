@@ -1,0 +1,250 @@
+{
+    "sourceFile": "crewfire-backend/app/models/feedModel.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 58,
+            "patches": [
+                {
+                    "date": 1643931803837,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1643931839422,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n   tableName = 'artikli';\n \n   getFeeds = async () => {\n     try {\n-      return await axios.get('https://dog.ceo/api/breeds/list/all');\n+      return await axios.get('https://api.flickr.com/services/feeds/photos_public.gne?format=json');\n     } catch (error) {\n       console.error(error);\n     }\n   };\n"
+                },
+                {
+                    "date": 1643931977958,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,14 @@\n-var query = require('./db.js');\n-const { multipleColumnSet } = require('../utils/common.utils');\n+const axios = require('axios');\n \n class Feed {\n   tableName = 'artikli';\n \n   getFeeds = async () => {\n     try {\n-      return await axios.get('https://api.flickr.com/services/feeds/photos_public.gne?format=json');\n+      return await axios.get(\n+        `${proces.env.API_URL}/services/feeds/photos_public.gne?format=json`\n+      );\n     } catch (error) {\n       console.error(error);\n     }\n   };\n"
+                },
+                {
+                    "date": 1643932290062,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n \n   getFeeds = async () => {\n     try {\n       return await axios.get(\n-        `${proces.env.API_URL}/services/feeds/photos_public.gne?format=json`\n+        `${process.env.API_URL}/services/feeds/photos_public.gne?format=json`\n       );\n     } catch (error) {\n       console.error(error);\n     }\n"
+                },
+                {
+                    "date": 1643932327040,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n \n   getFeeds = async () => {\n     try {\n       return await axios.get(\n-        `${process.env.API_URL}/services/feeds/photos_public.gne?format=json`\n+        `https://api.flickr.com/services/feeds/photos_public.gne?format=json`\n       );\n     } catch (error) {\n       console.error(error);\n     }\n"
+                },
+                {
+                    "date": 1643932393800,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,11 +4,13 @@\n   tableName = 'artikli';\n \n   getFeeds = async () => {\n     try {\n-      return await axios.get(\n+      const result = await axios.get(\n         `https://api.flickr.com/services/feeds/photos_public.gne?format=json`\n       );\n+\n+      return JSON.parse(result);\n     } catch (error) {\n       console.error(error);\n     }\n   };\n"
+                },
+                {
+                    "date": 1643932438856,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n       const result = await axios.get(\n         `https://api.flickr.com/services/feeds/photos_public.gne?format=json`\n       );\n \n+      console.log('Result ', result);\n       return JSON.parse(result);\n     } catch (error) {\n       console.error(error);\n     }\n"
+                },
+                {
+                    "date": 1643932473943,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,10 +8,10 @@\n       const result = await axios.get(\n         `https://api.flickr.com/services/feeds/photos_public.gne?format=json`\n       );\n \n-      console.log('Result ', result);\n-      return JSON.parse(result);\n+      console.log('Result ', result.data);\n+      return JSON.parse(result.data);\n     } catch (error) {\n       console.error(error);\n     }\n   };\n"
+                },
+                {
+                    "date": 1643932489147,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n         `https://api.flickr.com/services/feeds/photos_public.gne?format=json`\n       );\n \n       console.log('Result ', result.data);\n-      return JSON.parse(result.data);\n+      return result.data;\n     } catch (error) {\n       console.error(error);\n     }\n   };\n"
+                },
+                {
+                    "date": 1643932522623,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n         `https://api.flickr.com/services/feeds/photos_public.gne?format=json`\n       );\n \n       console.log('Result ', result.data);\n-      return result.data;\n+      return result.data.items;\n     } catch (error) {\n       console.error(error);\n     }\n   };\n"
+                },
+                {
+                    "date": 1643932580605,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,18 +3,14 @@\n class Feed {\n   tableName = 'artikli';\n \n   getFeeds = async () => {\n-    try {\n-      const result = await axios.get(\n+    const result = await axios.get(\n         `https://api.flickr.com/services/feeds/photos_public.gne?format=json`\n       );\n \n       console.log('Result ', result.data);\n       return result.data.items;\n-    } catch (error) {\n-      console.error(error);\n-    }\n   };\n \n   //   Article.getAllArticles = function (result) {\n   //   query('Select * from artikli', function (err, res) {\n"
+                },
+                {
+                    "date": 1643932716132,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n         `https://api.flickr.com/services/feeds/photos_public.gne?format=json`\n       );\n \n       console.log('Result ', result.data);\n-      return result.data.items;\n+      return result.data.items.json();\n   };\n \n   //   Article.getAllArticles = function (result) {\n   //   query('Select * from artikli', function (err, res) {\n"
+                },
+                {
+                    "date": 1643932766334,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n         `https://api.flickr.com/services/feeds/photos_public.gne?format=json`\n       );\n \n       console.log('Result ', result.data);\n-      return result.data.items.json();\n+      return result.data.json();\n   };\n \n   //   Article.getAllArticles = function (result) {\n   //   query('Select * from artikli', function (err, res) {\n"
+                },
+                {
+                    "date": 1643932813322,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,14 +3,13 @@\n class Feed {\n   tableName = 'artikli';\n \n   getFeeds = async () => {\n-    const result = await axios.get(\n-        `https://api.flickr.com/services/feeds/photos_public.gne?format=json`\n-      );\n-\n-      console.log('Result ', result.data);\n-      return result.data.json();\n+    try {\n+      return await axios.get('https://dog.ceo/api/breeds/list/all');\n+    } catch (error) {\n+      console.error(error);\n+    }\n   };\n \n   //   Article.getAllArticles = function (result) {\n   //   query('Select * from artikli', function (err, res) {\n"
+                },
+                {
+                    "date": 1643963255264,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,13 +3,9 @@\n class Feed {\n   tableName = 'artikli';\n \n   getFeeds = async () => {\n-    try {\n-      return await axios.get('https://dog.ceo/api/breeds/list/all');\n-    } catch (error) {\n-      console.error(error);\n-    }\n+    return await axios.get('https://dog.ceo/api/breeds/list/all');\n   };\n \n   //   Article.getAllArticles = function (result) {\n   //   query('Select * from artikli', function (err, res) {\n"
+                },
+                {
+                    "date": 1643963280870,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n class Feed {\n   tableName = 'artikli';\n \n   getFeeds = async () => {\n-    return await axios.get('https://dog.ceo/api/breeds/list/all');\n+    return await axios.get('https://www.flickr.com/services/feeds/photos_public.gne?format=json');\n   };\n \n   //   Article.getAllArticles = function (result) {\n   //   query('Select * from artikli', function (err, res) {\n"
+                },
+                {
+                    "date": 1643963312332,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,11 @@\n class Feed {\n   tableName = 'artikli';\n \n   getFeeds = async () => {\n-    return await axios.get('https://www.flickr.com/services/feeds/photos_public.gne?format=json');\n+    const result = await axios.get('https://www.flickr.com/services/feeds/photos_public.gne?format=json');\n+\n+    return result.json();\n   };\n \n   //   Article.getAllArticles = function (result) {\n   //   query('Select * from artikli', function (err, res) {\n"
+                },
+                {
+                    "date": 1643963326810,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n \n   getFeeds = async () => {\n     const result = await axios.get('https://www.flickr.com/services/feeds/photos_public.gne?format=json');\n \n-    return result.json();\n+    return result.data;\n   };\n \n   //   Article.getAllArticles = function (result) {\n   //   query('Select * from artikli', function (err, res) {\n"
+                },
+                {
+                    "date": 1643963356299,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n \n   getFeeds = async () => {\n     const result = await axios.get('https://www.flickr.com/services/feeds/photos_public.gne?format=json');\n \n-    return result.data;\n+    return result.data.items;\n   };\n \n   //   Article.getAllArticles = function (result) {\n   //   query('Select * from artikli', function (err, res) {\n"
+                },
+                {
+                    "date": 1643963380125,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,10 @@\n \n   getFeeds = async () => {\n     const result = await axios.get('https://www.flickr.com/services/feeds/photos_public.gne?format=json');\n \n+    console.log(result.data.items)\n+\n     return result.data.items;\n   };\n \n   //   Article.getAllArticles = function (result) {\n"
+                },
+                {
+                    "date": 1643963394561,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n     const result = await axios.get('https://www.flickr.com/services/feeds/photos_public.gne?format=json');\n \n     console.log(result.data.items)\n \n-    return result.data.items;\n+    return result.data;\n   };\n \n   //   Article.getAllArticles = function (result) {\n   //   query('Select * from artikli', function (err, res) {\n"
+                },
+                {
+                    "date": 1643963434188,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,11 +5,11 @@\n \n   getFeeds = async () => {\n     const result = await axios.get('https://www.flickr.com/services/feeds/photos_public.gne?format=json');\n \n-    console.log(result.data.items)\n+    console.log(result.data.jsonFlickrFeed)\n \n-    return result.data;\n+    return result.data.jsonFlickrFeed;\n   };\n \n   //   Article.getAllArticles = function (result) {\n   //   query('Select * from artikli', function (err, res) {\n"
+                },
+                {
+                    "date": 1643963460531,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,11 +5,11 @@\n \n   getFeeds = async () => {\n     const result = await axios.get('https://www.flickr.com/services/feeds/photos_public.gne?format=json');\n \n-    console.log(result.data.jsonFlickrFeed)\n+    console.log(result.data[0])\n \n-    return result.data.jsonFlickrFeed;\n+    return result.data[0];\n   };\n \n   //   Article.getAllArticles = function (result) {\n   //   query('Select * from artikli', function (err, res) {\n"
+                },
+                {
+                    "date": 1643963513434,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,11 +5,11 @@\n \n   getFeeds = async () => {\n     const result = await axios.get('https://www.flickr.com/services/feeds/photos_public.gne?format=json');\n \n-    console.log(result.data[0])\n+    const response = JSON.parse(result);\n \n-    return result.data[0];\n+    return response.data;\n   };\n \n   //   Article.getAllArticles = function (result) {\n   //   query('Select * from artikli', function (err, res) {\n"
+                },
+                {
+                    "date": 1643963524729,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,10 @@\n     const result = await axios.get('https://www.flickr.com/services/feeds/photos_public.gne?format=json');\n \n     const response = JSON.parse(result);\n \n+    console.log('resposne ', response);\n+\n     return response.data;\n   };\n \n   //   Article.getAllArticles = function (result) {\n"
+                },
+                {
+                    "date": 1643963537319,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n \n   getFeeds = async () => {\n     const result = await axios.get('https://www.flickr.com/services/feeds/photos_public.gne?format=json');\n \n-    const response = JSON.parse(result);\n+    const response = JSON.parse(result.data);\n \n     console.log('resposne ', response);\n \n     return response.data;\n"
+                },
+                {
+                    "date": 1643963561957,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,13 +5,11 @@\n \n   getFeeds = async () => {\n     const result = await axios.get('https://www.flickr.com/services/feeds/photos_public.gne?format=json');\n \n-    const response = JSON.parse(result.data);\n+    console.log('result ', result);\n \n-    console.log('resposne ', response);\n-\n-    return response.data;\n+    return result.data;\n   };\n \n   //   Article.getAllArticles = function (result) {\n   //   query('Select * from artikli', function (err, res) {\n"
+                },
+                {
+                    "date": 1643963706158,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n     const result = await axios.get('https://www.flickr.com/services/feeds/photos_public.gne?format=json');\n \n     console.log('result ', result);\n \n-    return result.data;\n+    return result;\n   };\n \n   //   Article.getAllArticles = function (result) {\n   //   query('Select * from artikli', function (err, res) {\n"
+                },
+                {
+                    "date": 1643963717778,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n     const result = await axios.get('https://www.flickr.com/services/feeds/photos_public.gne?format=json');\n \n     console.log('result ', result);\n \n-    return result;\n+    return result.status;\n   };\n \n   //   Article.getAllArticles = function (result) {\n   //   query('Select * from artikli', function (err, res) {\n"
+                },
+                {
+                    "date": 1643963733372,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n     const result = await axios.get('https://www.flickr.com/services/feeds/photos_public.gne?format=json');\n \n     console.log('result ', result);\n \n-    return result.status;\n+    return result.data;\n   };\n \n   //   Article.getAllArticles = function (result) {\n   //   query('Select * from artikli', function (err, res) {\n"
+                },
+                {
+                    "date": 1643963765070,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,25 +1,15 @@\n const axios = require('axios');\n \n class Feed {\n-  tableName = 'artikli';\n-\n   getFeeds = async () => {\n-    const result = await axios.get('https://www.flickr.com/services/feeds/photos_public.gne?format=json');\n+    const result = await axios.get(\n+      'https://www.flickr.com/services/feeds/photos_public.gne?format=json'\n+    );\n \n     console.log('result ', result);\n \n     return result.data;\n   };\n-\n-  //   Article.getAllArticles = function (result) {\n-  //   query('Select * from artikli', function (err, res) {\n-  //     if (err) {\n-  //       console.log('error: ', err);\n-  //       result(null, err);\n-  //     } else {\n-  //       result(null, res);\n-  //     }\n-  //   });\n }\n \n module.exports = new Feed();\n"
+                },
+                {
+                    "date": 1643963860372,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,10 +5,8 @@\n     const result = await axios.get(\n       'https://www.flickr.com/services/feeds/photos_public.gne?format=json'\n     );\n \n-    console.log('result ', result);\n-\n     return result.data;\n   };\n }\n \n"
+                },
+                {
+                    "date": 1644067467272,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,10 @@\n     const result = await axios.get(\n       'https://www.flickr.com/services/feeds/photos_public.gne?format=json'\n     );\n \n+    console.log(result.data);\n+\n     return result.data;\n   };\n }\n \n"
+                },
+                {
+                    "date": 1644067553700,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,10 +5,15 @@\n     const result = await axios.get(\n       'https://www.flickr.com/services/feeds/photos_public.gne?format=json'\n     );\n \n-    console.log(result.data);\n+    const response = result.data.substring(\n+      result.data.indexOf('(') + 1,\n+      result.data.lastIndexOf(')')\n+    );\n \n+    console.log(response);\n+\n     return result.data;\n   };\n }\n \n"
+                },
+                {
+                    "date": 1644067587345,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n     );\n \n     console.log(response);\n \n-    return result.data;\n+    return response;\n   };\n }\n \n module.exports = new Feed();\n"
+                },
+                {
+                    "date": 1644067609265,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,10 +10,8 @@\n       result.data.indexOf('(') + 1,\n       result.data.lastIndexOf(')')\n     );\n \n-    console.log(response);\n-\n     return response;\n   };\n }\n \n"
+                },
+                {
+                    "date": 1644067689629,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,10 @@\n       result.data.indexOf('(') + 1,\n       result.data.lastIndexOf(')')\n     );\n \n+    console.log(response.items[0]);\n+\n     return response;\n   };\n }\n \n"
+                },
+                {
+                    "date": 1644067724877,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n       result.data.indexOf('(') + 1,\n       result.data.lastIndexOf(')')\n     );\n \n-    console.log(response.items[0]);\n+    console.log(response.data.items[0]);\n \n     return response;\n   };\n }\n"
+                },
+                {
+                    "date": 1644067747604,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n       result.data.indexOf('(') + 1,\n       result.data.lastIndexOf(')')\n     );\n \n-    console.log(response.data.items[0]);\n+    console.log(response);\n \n     return response;\n   };\n }\n"
+                },
+                {
+                    "date": 1644067774740,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n       result.data.indexOf('(') + 1,\n       result.data.lastIndexOf(')')\n     );\n \n-    console.log(response);\n+    console.log(JSON.parse(response));\n \n     return response;\n   };\n }\n"
+                },
+                {
+                    "date": 1644067793602,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n       result.data.indexOf('(') + 1,\n       result.data.lastIndexOf(')')\n     );\n \n-    console.log(JSON.parse(response));\n+    console.log(JSON.parse(response[0]));\n \n     return response;\n   };\n }\n"
+                },
+                {
+                    "date": 1644067811400,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n       result.data.indexOf('(') + 1,\n       result.data.lastIndexOf(')')\n     );\n \n-    console.log(JSON.parse(response[0]));\n+    console.log(response[0]);\n \n     return response;\n   };\n }\n"
+                },
+                {
+                    "date": 1644067835712,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,10 +10,12 @@\n       result.data.indexOf('(') + 1,\n       result.data.lastIndexOf(')')\n     );\n \n-    console.log(response[0]);\n+    const parsed = JSON.parse(response);\n \n+    console.log(parsed[0]);\n+\n     return response;\n   };\n }\n \n"
+                },
+                {
+                    "date": 1644067846163,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n     );\n \n     const parsed = JSON.parse(response);\n \n-    console.log(parsed[0]);\n+    console.log(parsed);\n \n     return response;\n   };\n }\n"
+                },
+                {
+                    "date": 1644067873145,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n     );\n \n     const parsed = JSON.parse(response);\n \n-    console.log(parsed);\n+    console.log(parsed.items[0]);\n \n     return response;\n   };\n }\n"
+                },
+                {
+                    "date": 1644067887637,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n     const parsed = JSON.parse(response);\n \n     console.log(parsed.items[0]);\n \n-    return response;\n+    return parsed;\n   };\n }\n \n module.exports = new Feed();\n"
+                },
+                {
+                    "date": 1644067934779,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,18 +4,14 @@\n   getFeeds = async () => {\n     const result = await axios.get(\n       'https://www.flickr.com/services/feeds/photos_public.gne?format=json'\n     );\n-\n     const response = result.data.substring(\n       result.data.indexOf('(') + 1,\n       result.data.lastIndexOf(')')\n     );\n-\n     const parsed = JSON.parse(response);\n \n-    console.log(parsed.items[0]);\n-\n     return parsed;\n   };\n }\n \n"
+                },
+                {
+                    "date": 1644067974927,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,10 @@\n       result.data.lastIndexOf(')')\n     );\n     const parsed = JSON.parse(response);\n \n+    console.log(parsed.items[0].title)\n+\n     return parsed;\n   };\n }\n \n"
+                },
+                {
+                    "date": 1644067989245,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n       result.data.lastIndexOf(')')\n     );\n     const parsed = JSON.parse(response);\n \n-    console.log(parsed.items[0].title)\n+    console.log(parsed.items[5s].title)\n \n     return parsed;\n   };\n }\n"
+                },
+                {
+                    "date": 1644077239562,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,11 +10,28 @@\n       result.data.lastIndexOf(')')\n     );\n     const parsed = JSON.parse(response);\n \n-    console.log(parsed.items[5s].title)\n+    console.log(parsed.items[5].title)\n \n     return parsed;\n   };\n+\n+  getSearchedFeeds = async (params) => {\n+    console.log('params', params)\n+    const result = await axios.get(\n+      'https://www.flickr.com/services/feeds/photos_public.gne?format=json'\n+    );\n+\n+    const response = result.data.substring(\n+      result.data.indexOf('(') + 1,\n+      result.data.lastIndexOf(')')\n+    );\n+    const parsed = JSON.parse(response);\n+\n+    console.log(parsed.items[5].title)\n+\n+    return parsed;\n+  };\n }\n \n module.exports = new Feed();\n"
+                },
+                {
+                    "date": 1644077813063,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n       result.data.lastIndexOf(')')\n     );\n     const parsed = JSON.parse(response);\n \n-    console.log(parsed.items[5].title)\n+    // console.log(parsed.items[5].title)\n \n     return parsed;\n   };\n \n"
+                },
+                {
+                    "date": 1644077876937,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n     return parsed;\n   };\n \n   getSearchedFeeds = async (params) => {\n-    console.log('params', params)\n+    console.log('params', params.tags)\n     const result = await axios.get(\n       'https://www.flickr.com/services/feeds/photos_public.gne?format=json'\n     );\n \n@@ -27,9 +27,9 @@\n       result.data.lastIndexOf(')')\n     );\n     const parsed = JSON.parse(response);\n \n-    console.log(parsed.items[5].title)\n+    // console.log(parsed.items[5].title)\n \n     return parsed;\n   };\n }\n"
+                },
+                {
+                    "date": 1644078026028,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,10 @@\n     return parsed;\n   };\n \n   getSearchedFeeds = async (params) => {\n-    console.log('params', params.tags)\n+    const { tags } = params;\n+\n     const result = await axios.get(\n       'https://www.flickr.com/services/feeds/photos_public.gne?format=json'\n     );\n \n@@ -27,10 +28,12 @@\n       result.data.lastIndexOf(')')\n     );\n     const parsed = JSON.parse(response);\n \n-    // console.log(parsed.items[5].title)\n+    parsed.items.filter(item => item.tags === tags);\n \n+    console.log(parsed);\n+\n     return parsed;\n   };\n }\n \n"
+                },
+                {
+                    "date": 1644078093954,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n       result.data.lastIndexOf(')')\n     );\n     const parsed = JSON.parse(response);\n \n-    parsed.items.filter(item => item.tags === tags);\n+    // parsed.items.filter(item => item.tags === tags);\n \n     console.log(parsed);\n \n     return parsed;\n"
+                },
+                {
+                    "date": 1644078125384,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n const axios = require('axios');\n \n class Feed {\n   getFeeds = async () => {\n+    console.log('NOT search');\n     const result = await axios.get(\n       'https://www.flickr.com/services/feeds/photos_public.gne?format=json'\n     );\n     const response = result.data.substring(\n@@ -16,8 +17,9 @@\n     return parsed;\n   };\n \n   getSearchedFeeds = async (params) => {\n+    console.log('search');\n     const { tags } = params;\n \n     const result = await axios.get(\n       'https://www.flickr.com/services/feeds/photos_public.gne?format=json'\n"
+                },
+                {
+                    "date": 1644078382227,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n     console.log('search');\n     const { tags } = params;\n \n     const result = await axios.get(\n-      'https://www.flickr.com/services/feeds/photos_public.gne?format=json'\n+      `https://www.flickr.com/services/feeds/photos_public.gne?format=json&tags=${tags}`\n     );\n \n     const response = result.data.substring(\n       result.data.indexOf('(') + 1,\n"
+                },
+                {
+                    "date": 1644078389139,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,12 +30,8 @@\n       result.data.lastIndexOf(')')\n     );\n     const parsed = JSON.parse(response);\n \n-    // parsed.items.filter(item => item.tags === tags);\n-\n-    console.log(parsed);\n-\n     return parsed;\n   };\n }\n \n"
+                },
+                {
+                    "date": 1644078454342,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,8 +20,10 @@\n   getSearchedFeeds = async (params) => {\n     console.log('search');\n     const { tags } = params;\n \n+    console.log(tags);\n+\n     const result = await axios.get(\n       `https://www.flickr.com/services/feeds/photos_public.gne?format=json&tags=${tags}`\n     );\n \n"
+                },
+                {
+                    "date": 1644078595558,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,19 +11,14 @@\n       result.data.lastIndexOf(')')\n     );\n     const parsed = JSON.parse(response);\n \n-    // console.log(parsed.items[5].title)\n-\n     return parsed;\n   };\n \n   getSearchedFeeds = async (params) => {\n-    console.log('search');\n     const { tags } = params;\n \n-    console.log(tags);\n-\n     const result = await axios.get(\n       `https://www.flickr.com/services/feeds/photos_public.gne?format=json&tags=${tags}`\n     );\n \n"
+                }
+            ],
+            "date": 1643931803837,
+            "name": "Commit-0",
+            "content": "var query = require('./db.js');\nconst { multipleColumnSet } = require('../utils/common.utils');\n\nclass Feed {\n  tableName = 'artikli';\n\n  getFeeds = async () => {\n    try {\n      return await axios.get('https://dog.ceo/api/breeds/list/all');\n    } catch (error) {\n      console.error(error);\n    }\n  };\n\n  //   Article.getAllArticles = function (result) {\n  //   query('Select * from artikli', function (err, res) {\n  //     if (err) {\n  //       console.log('error: ', err);\n  //       result(null, err);\n  //     } else {\n  //       result(null, res);\n  //     }\n  //   });\n}\n\nmodule.exports = new Feed();\n"
+        }
+    ]
+}

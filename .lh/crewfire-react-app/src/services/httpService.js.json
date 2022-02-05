@@ -1,0 +1,34 @@
+{
+    "sourceFile": "crewfire-react-app/src/services/httpService.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 4,
+            "patches": [
+                {
+                    "date": 1643965356652,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1644051474443,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n   const config = {\n     headers: { Authorization: `Bearer ${token}` },\n   };\n   try {\n-    const response = await axios.get(`${url}${path}${params}`, config);\n+    const response = await axios.get(`https://api.flickr.com/services/feeds/photos_public.gne?format=json`, config);\n     return response;\n   } catch (error) {\n     console.log(error);\n     return error;\n"
+                },
+                {
+                    "date": 1644051503818,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,16 @@\n import axios from 'axios';\n \n-const url = 'http://localhost:8080';\n+const url = 'https://api.flickr.com';\n \n export const getRequest = async (path, params = '') => {\n   const token = localStorage.getItem('token');\n \n   const config = {\n     headers: { Authorization: `Bearer ${token}` },\n   };\n   try {\n-    const response = await axios.get(`https://api.flickr.com/services/feeds/photos_public.gne?format=json`, config);\n+    const response = await axios.get(`${url}${path}${params}`, config);\n     return response;\n   } catch (error) {\n     console.log(error);\n     return error;\n"
+                },
+                {
+                    "date": 1644051550385,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import axios from 'axios';\n \n-const url = 'https://api.flickr.com';\n+const url = 'http://localhost:8080';\n \n export const getRequest = async (path, params = '') => {\n   const token = localStorage.getItem('token');\n \n"
+                },
+                {
+                    "date": 1644052395899,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,63 +1,18 @@\n import axios from 'axios';\n \n const url = 'http://localhost:8080';\n \n-export const getRequest = async (path, params = '') => {\n+export const getRequest = async (path) => {\n   const token = localStorage.getItem('token');\n \n   const config = {\n     headers: { Authorization: `Bearer ${token}` },\n   };\n   try {\n-    const response = await axios.get(`${url}${path}${params}`, config);\n+    const response = await axios.get(`${url}${path}`, config);\n     return response;\n   } catch (error) {\n     console.log(error);\n     return error;\n   }\n };\n-\n-export const postRequest = async (path, body) => {\n-  const token = localStorage.getItem('token');\n-\n-  const config = {\n-    headers: { Authorization: `Bearer ${token}` },\n-  };\n-  try {\n-    const response = await axios.post(`${url}${path}`, body, config);\n-    return response;\n-  } catch (error) {\n-    console.log(error);\n-    return error;\n-  }\n-};\n-\n-export const putRequest = async (path, body, params = '') => {\n-  const token = localStorage.getItem('token');\n-\n-  const config = {\n-    headers: { Authorization: `Bearer ${token}` },\n-  };\n-  try {\n-    const response = await axios.put(`${url}${path}${params}`, body, config);\n-    return response;\n-  } catch (error) {\n-    console.log(error);\n-    return error;\n-  }\n-};\n-\n-export const deleteRequest = async (path, params) => {\n-  const token = localStorage.getItem('token');\n-\n-  const config = {\n-    headers: { Authorization: `Bearer ${token}` },\n-  };\n-  try {\n-    const response = await axios.delete(`${url}${path}${params}`, config);\n-    return response;\n-  } catch (error) {\n-    console.log(error);\n-    return error;\n-  }\n-};\n"
+                }
+            ],
+            "date": 1643965356652,
+            "name": "Commit-0",
+            "content": "import axios from 'axios';\n\nconst url = 'http://localhost:8080';\n\nexport const getRequest = async (path, params = '') => {\n  const token = localStorage.getItem('token');\n\n  const config = {\n    headers: { Authorization: `Bearer ${token}` },\n  };\n  try {\n    const response = await axios.get(`${url}${path}${params}`, config);\n    return response;\n  } catch (error) {\n    console.log(error);\n    return error;\n  }\n};\n\nexport const postRequest = async (path, body) => {\n  const token = localStorage.getItem('token');\n\n  const config = {\n    headers: { Authorization: `Bearer ${token}` },\n  };\n  try {\n    const response = await axios.post(`${url}${path}`, body, config);\n    return response;\n  } catch (error) {\n    console.log(error);\n    return error;\n  }\n};\n\nexport const putRequest = async (path, body, params = '') => {\n  const token = localStorage.getItem('token');\n\n  const config = {\n    headers: { Authorization: `Bearer ${token}` },\n  };\n  try {\n    const response = await axios.put(`${url}${path}${params}`, body, config);\n    return response;\n  } catch (error) {\n    console.log(error);\n    return error;\n  }\n};\n\nexport const deleteRequest = async (path, params) => {\n  const token = localStorage.getItem('token');\n\n  const config = {\n    headers: { Authorization: `Bearer ${token}` },\n  };\n  try {\n    const response = await axios.delete(`${url}${path}${params}`, config);\n    return response;\n  } catch (error) {\n    console.log(error);\n    return error;\n  }\n};\n"
+        }
+    ]
+}

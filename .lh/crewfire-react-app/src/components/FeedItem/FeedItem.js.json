@@ -1,0 +1,202 @@
+{
+    "sourceFile": "crewfire-react-app/src/components/FeedItem/FeedItem.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 46,
+            "patches": [
+                {
+                    "date": 1644060699097,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1644061698887,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,17 +16,17 @@\n     height: 140,\n   },\n });\n \n-const FeedItem = () => {\n+const FeedItem = ({ item }) => {\n   const classes = useStyles();\n \n   return (\n     <Card className={classes.root}>\n       <CardActionArea>\n         <CardMedia\n           className={classes.media}\n-          image='https://www.opendatasoft.com/wp-content/uploads/2017/04/Amsterdam-energy-Atlas.jpg'\n+          image={item.media.m}\n           title='Contemplative Reptile'\n         />\n         <CardContent>\n           <Typography gutterBottom variant='h5' component='h2'>\n"
+                },
+                {
+                    "date": 1644061774457,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,15 +18,16 @@\n });\n \n const FeedItem = ({ item }) => {\n   const classes = useStyles();\n+  const { m: media } = item; \n \n   return (\n     <Card className={classes.root}>\n       <CardActionArea>\n         <CardMedia\n           className={classes.media}\n-          image={item.media.m}\n+          image={m}\n           title='Contemplative Reptile'\n         />\n         <CardContent>\n           <Typography gutterBottom variant='h5' component='h2'>\n"
+                },
+                {
+                    "date": 1644061841355,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,18 +16,17 @@\n     height: 140,\n   },\n });\n \n-const FeedItem = ({ item }) => {\n+const FeedItem = ({ media, title, tags, author, description: item }) => {\n   const classes = useStyles();\n-  const { m: media } = item; \n \n   return (\n     <Card className={classes.root}>\n       <CardActionArea>\n         <CardMedia\n           className={classes.media}\n-          image={m}\n+          image={media.m}\n           title='Contemplative Reptile'\n         />\n         <CardContent>\n           <Typography gutterBottom variant='h5' component='h2'>\n"
+                },
+                {
+                    "date": 1644061851730,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n     height: 140,\n   },\n });\n \n-const FeedItem = ({ media, title, tags, author, description: item }) => {\n+const FeedItem = ({ media, title, tags, author, description: { item } }) => {\n   const classes = useStyles();\n \n   return (\n     <Card className={classes.root}>\n"
+                },
+                {
+                    "date": 1644061891099,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,10 +16,11 @@\n     height: 140,\n   },\n });\n \n-const FeedItem = ({ media, title, tags, author, description: { item } }) => {\n+const FeedItem = ({ item }) => {\n   const classes = useStyles();\n+  const { media, title, tags, author, description } = item;\n \n   return (\n     <Card className={classes.root}>\n       <CardActionArea>\n@@ -29,13 +30,12 @@\n           title='Contemplative Reptile'\n         />\n         <CardContent>\n           <Typography gutterBottom variant='h5' component='h2'>\n-            Lizard\n+            {title}\n           </Typography>\n           <Typography variant='body2' color='textSecondary' component='p'>\n-            Lizards are a widespread group of squamate reptiles, with over 6,000\n-            species, ranging across all continents except Antarctica\n+            {description}\n           </Typography>\n         </CardContent>\n       </CardActionArea>\n       <CardActions>\n"
+                },
+                {
+                    "date": 1644061906423,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n });\n \n const FeedItem = ({ item }) => {\n   const classes = useStyles();\n-  const { media, title, tags, author, description } = item;\n+  const { media, title, tags, author } = item;\n \n   return (\n     <Card className={classes.root}>\n       <CardActionArea>\n"
+                },
+                {
+                    "date": 1644061916553,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n });\n \n const FeedItem = ({ item }) => {\n   const classes = useStyles();\n-  const { media, title, tags, author } = item;\n+  const { media, title, tags, author, } = item;\n \n   return (\n     <Card className={classes.root}>\n       <CardActionArea>\n@@ -33,9 +33,10 @@\n           <Typography gutterBottom variant='h5' component='h2'>\n             {title}\n           </Typography>\n           <Typography variant='body2' color='textSecondary' component='p'>\n-            {description}\n+            Lizards are a widespread group of squamate reptiles, with over 6,000\n+            species, ranging across all continents except Antarctica\n           </Typography>\n         </CardContent>\n       </CardActionArea>\n       <CardActions>\n"
+                },
+                {
+                    "date": 1644061956242,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n });\n \n const FeedItem = ({ item }) => {\n   const classes = useStyles();\n-  const { media, title, tags, author, } = item;\n+  const { media, title, tags, author } = item;\n \n   return (\n     <Card className={classes.root}>\n       <CardActionArea>\n@@ -33,10 +33,9 @@\n           <Typography gutterBottom variant='h5' component='h2'>\n             {title}\n           </Typography>\n           <Typography variant='body2' color='textSecondary' component='p'>\n-            Lizards are a widespread group of squamate reptiles, with over 6,000\n-            species, ranging across all continents except Antarctica\n+            {author}\n           </Typography>\n         </CardContent>\n       </CardActionArea>\n       <CardActions>\n"
+                },
+                {
+                    "date": 1644061980488,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,12 +30,12 @@\n           title='Contemplative Reptile'\n         />\n         <CardContent>\n           <Typography gutterBottom variant='h5' component='h2'>\n-            {title}\n+          {author}\n           </Typography>\n           <Typography variant='body2' color='textSecondary' component='p'>\n-            {author}\n+            {title}\n           </Typography>\n         </CardContent>\n       </CardActionArea>\n       <CardActions>\n"
+                },
+                {
+                    "date": 1644062070062,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,16 +28,16 @@\n           className={classes.media}\n           image={media.m}\n           title='Contemplative Reptile'\n         />\n-        <CardContent>\n+        {/* <CardContent>\n           <Typography gutterBottom variant='h5' component='h2'>\n           {author}\n           </Typography>\n           <Typography variant='body2' color='textSecondary' component='p'>\n             {title}\n           </Typography>\n-        </CardContent>\n+        </CardContent> */}\n       </CardActionArea>\n       <CardActions>\n         <Button size='small' color='primary'>\n           Share\n"
+                },
+                {
+                    "date": 1644062079017,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,16 +28,16 @@\n           className={classes.media}\n           image={media.m}\n           title='Contemplative Reptile'\n         />\n-        {/* <CardContent>\n-          <Typography gutterBottom variant='h5' component='h2'>\n+        <CardContent>\n+          {/* <Typography gutterBottom variant='h5' component='h2'>\n           {author}\n           </Typography>\n           <Typography variant='body2' color='textSecondary' component='p'>\n             {title}\n-          </Typography>\n-        </CardContent> */}\n+          </Typography> */}\n+        </CardContent>\n       </CardActionArea>\n       <CardActions>\n         <Button size='small' color='primary'>\n           Share\n"
+                },
+                {
+                    "date": 1644062096179,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,14 +29,11 @@\n           image={media.m}\n           title='Contemplative Reptile'\n         />\n         <CardContent>\n-          {/* <Typography gutterBottom variant='h5' component='h2'>\n+          <Typography gutterBottom variant='h5' component='h2'>\n           {author}\n           </Typography>\n-          <Typography variant='body2' color='textSecondary' component='p'>\n-            {title}\n-          </Typography> */}\n         </CardContent>\n       </CardActionArea>\n       <CardActions>\n         <Button size='small' color='primary'>\n"
+                },
+                {
+                    "date": 1644062107456,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,11 +29,14 @@\n           image={media.m}\n           title='Contemplative Reptile'\n         />\n         <CardContent>\n-          <Typography gutterBottom variant='h5' component='h2'>\n+          <Typography gutterBottom variant='h6' component='h2'>\n           {author}\n           </Typography>\n+          <Typography variant='body2' color='textSecondary' component='p'>\n+            {title}\n+          </Typography>\n         </CardContent>\n       </CardActionArea>\n       <CardActions>\n         <Button size='small' color='primary'>\n"
+                },
+                {
+                    "date": 1644062122088,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,12 +30,12 @@\n           title='Contemplative Reptile'\n         />\n         <CardContent>\n           <Typography gutterBottom variant='h6' component='h2'>\n-          {author}\n+          {title}\n           </Typography>\n           <Typography variant='body2' color='textSecondary' component='p'>\n-            {title}\n+            {author}\n           </Typography>\n         </CardContent>\n       </CardActionArea>\n       <CardActions>\n"
+                },
+                {
+                    "date": 1644062156382,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n import Typography from '@material-ui/core/Typography';\n \n const useStyles = makeStyles({\n   root: {\n+    width: 345,\n     maxWidth: 345,\n   },\n   media: {\n     height: 140,\n@@ -30,9 +31,9 @@\n           title='Contemplative Reptile'\n         />\n         <CardContent>\n           <Typography gutterBottom variant='h6' component='h2'>\n-          {title}\n+            {title}\n           </Typography>\n           <Typography variant='body2' color='textSecondary' component='p'>\n             {author}\n           </Typography>\n"
+                },
+                {
+                    "date": 1644062170602,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,10 @@\n     width: 345,\n     maxWidth: 345,\n   },\n   media: {\n-    height: 140,\n+    height: 160,\n+    maxHeight: 160\n   },\n });\n \n const FeedItem = ({ item }) => {\n"
+                },
+                {
+                    "date": 1644062188106,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,9 @@\n           <Typography gutterBottom variant='h6' component='h2'>\n             {title}\n           </Typography>\n           <Typography variant='body2' color='textSecondary' component='p'>\n-            {author}\n+            {tags}\n           </Typography>\n         </CardContent>\n       </CardActionArea>\n       <CardActions>\n"
+                },
+                {
+                    "date": 1644062230285,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,12 +32,12 @@\n           title='Contemplative Reptile'\n         />\n         <CardContent>\n           <Typography gutterBottom variant='h6' component='h2'>\n-            {title}\n+            {title.substring(0, 23)}\n           </Typography>\n           <Typography variant='body2' color='textSecondary' component='p'>\n-            {tags}\n+            {author}\n           </Typography>\n         </CardContent>\n       </CardActionArea>\n       <CardActions>\n"
+                },
+                {
+                    "date": 1644062276419,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n     maxWidth: 345,\n   },\n   media: {\n     height: 160,\n-    maxHeight: 160\n+    maxHeight: 160,\n   },\n });\n \n const FeedItem = ({ item }) => {\n@@ -32,9 +32,9 @@\n           title='Contemplative Reptile'\n         />\n         <CardContent>\n           <Typography gutterBottom variant='h6' component='h2'>\n-            {title.substring(0, 23)}\n+            {title.length > 23 ? `${title.substring(0, 23)}..` : title}\n           </Typography>\n           <Typography variant='body2' color='textSecondary' component='p'>\n             {author}\n           </Typography>\n"
+                },
+                {
+                    "date": 1644062295031,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,9 @@\n           <Typography gutterBottom variant='h6' component='h2'>\n             {title.length > 23 ? `${title.substring(0, 23)}..` : title}\n           </Typography>\n           <Typography variant='body2' color='textSecondary' component='p'>\n-            {author}\n+            {author.length > 23 ? `${author.substring(0, 23)}..` : author}\n           </Typography>\n         </CardContent>\n       </CardActionArea>\n       <CardActions>\n"
+                },
+                {
+                    "date": 1644062308689,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,14 +9,12 @@\n import Typography from '@material-ui/core/Typography';\n \n const useStyles = makeStyles({\n   root: {\n-    width: 345,\n     maxWidth: 345,\n   },\n   media: {\n-    height: 160,\n-    maxHeight: 160,\n+    height: 140,\n   },\n });\n \n const FeedItem = ({ item }) => {\n"
+                },
+                {
+                    "date": 1644062315501,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,12 +9,14 @@\n import Typography from '@material-ui/core/Typography';\n \n const useStyles = makeStyles({\n   root: {\n+    width: 345,\n     maxWidth: 345,\n   },\n   media: {\n-    height: 140,\n+    height: 160,\n+    maxHeight: 160,\n   },\n });\n \n const FeedItem = ({ item }) => {\n"
+                },
+                {
+                    "date": 1644062334077,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,8 @@\n     maxWidth: 345,\n   },\n   media: {\n     height: 160,\n-    maxHeight: 160,\n   },\n });\n \n const FeedItem = ({ item }) => {\n@@ -31,9 +30,9 @@\n           image={media.m}\n           title='Contemplative Reptile'\n         />\n         <CardContent>\n-          <Typography gutterBottom variant='h6' component='h2'>\n+          <Typography gutterBottom variant='caption' component='h2'>\n             {title.length > 23 ? `${title.substring(0, 23)}..` : title}\n           </Typography>\n           <Typography variant='body2' color='textSecondary' component='p'>\n             {author.length > 23 ? `${author.substring(0, 23)}..` : author}\n"
+                },
+                {
+                    "date": 1644062342093,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n           image={media.m}\n           title='Contemplative Reptile'\n         />\n         <CardContent>\n-          <Typography gutterBottom variant='caption' component='h2'>\n+          <Typography gutterBottom variant='title' component='h2'>\n             {title.length > 23 ? `${title.substring(0, 23)}..` : title}\n           </Typography>\n           <Typography variant='body2' color='textSecondary' component='p'>\n             {author.length > 23 ? `${author.substring(0, 23)}..` : author}\n"
+                },
+                {
+                    "date": 1644062349219,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n           image={media.m}\n           title='Contemplative Reptile'\n         />\n         <CardContent>\n-          <Typography gutterBottom variant='title' component='h2'>\n+          <Typography gutterBottom variant='' component='h5'>\n             {title.length > 23 ? `${title.substring(0, 23)}..` : title}\n           </Typography>\n           <Typography variant='body2' color='textSecondary' component='p'>\n             {author.length > 23 ? `${author.substring(0, 23)}..` : author}\n"
+                },
+                {
+                    "date": 1644062361974,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n           image={media.m}\n           title='Contemplative Reptile'\n         />\n         <CardContent>\n-          <Typography gutterBottom variant='' component='h5'>\n+          <Typography gutterBottom variant=''>\n             {title.length > 23 ? `${title.substring(0, 23)}..` : title}\n           </Typography>\n           <Typography variant='body2' color='textSecondary' component='p'>\n             {author.length > 23 ? `${author.substring(0, 23)}..` : author}\n"
+                },
+                {
+                    "date": 1644062367473,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n           image={media.m}\n           title='Contemplative Reptile'\n         />\n         <CardContent>\n-          <Typography gutterBottom variant=''>\n+          <Typography gutterBottom variant='subtitle1'>\n             {title.length > 23 ? `${title.substring(0, 23)}..` : title}\n           </Typography>\n           <Typography variant='body2' color='textSecondary' component='p'>\n             {author.length > 23 ? `${author.substring(0, 23)}..` : author}\n"
+                },
+                {
+                    "date": 1644062373113,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n           image={media.m}\n           title='Contemplative Reptile'\n         />\n         <CardContent>\n-          <Typography gutterBottom variant='subtitle1'>\n+          <Typography gutterBottom variant='subtitle'>\n             {title.length > 23 ? `${title.substring(0, 23)}..` : title}\n           </Typography>\n           <Typography variant='body2' color='textSecondary' component='p'>\n             {author.length > 23 ? `${author.substring(0, 23)}..` : author}\n"
+                },
+                {
+                    "date": 1644062381459,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n           image={media.m}\n           title='Contemplative Reptile'\n         />\n         <CardContent>\n-          <Typography gutterBottom variant='subtitle'>\n+          <Typography gutterBottom variant='subtitle1' component='h2'>\n             {title.length > 23 ? `${title.substring(0, 23)}..` : title}\n           </Typography>\n           <Typography variant='body2' color='textSecondary' component='p'>\n             {author.length > 23 ? `${author.substring(0, 23)}..` : author}\n"
+                },
+                {
+                    "date": 1644062386950,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n           image={media.m}\n           title='Contemplative Reptile'\n         />\n         <CardContent>\n-          <Typography gutterBottom variant='subtitle1' component='h2'>\n+          <Typography gutterBottom variant='subtitle1' component='h3'>\n             {title.length > 23 ? `${title.substring(0, 23)}..` : title}\n           </Typography>\n           <Typography variant='body2' color='textSecondary' component='p'>\n             {author.length > 23 ? `${author.substring(0, 23)}..` : author}\n"
+                },
+                {
+                    "date": 1644062392534,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n           image={media.m}\n           title='Contemplative Reptile'\n         />\n         <CardContent>\n-          <Typography gutterBottom variant='subtitle1' component='h3'>\n+          <Typography gutterBottom variant='subtitle1' component='h5'>\n             {title.length > 23 ? `${title.substring(0, 23)}..` : title}\n           </Typography>\n           <Typography variant='body2' color='textSecondary' component='p'>\n             {author.length > 23 ? `${author.substring(0, 23)}..` : author}\n"
+                },
+                {
+                    "date": 1644062453299,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,14 +30,11 @@\n           image={media.m}\n           title='Contemplative Reptile'\n         />\n         <CardContent>\n-          <Typography gutterBottom variant='subtitle1' component='h5'>\n-            {title.length > 23 ? `${title.substring(0, 23)}..` : title}\n+          <Typography gutterBottom variant='subtitle1' component='h2'>\n+          {author.length > 23 ? `${author.substring(0, 23)}..` : author}\n           </Typography>\n-          <Typography variant='body2' color='textSecondary' component='p'>\n-            {author.length > 23 ? `${author.substring(0, 23)}..` : author}\n-          </Typography>\n         </CardContent>\n       </CardActionArea>\n       <CardActions>\n         <Button size='small' color='primary'>\n"
+                },
+                {
+                    "date": 1644062462432,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n           image={media.m}\n           title='Contemplative Reptile'\n         />\n         <CardContent>\n-          <Typography gutterBottom variant='subtitle1' component='h2'>\n+          <Typography gutterBottom variant='h3' component='h2'>\n           {author.length > 23 ? `${author.substring(0, 23)}..` : author}\n           </Typography>\n         </CardContent>\n       </CardActionArea>\n"
+                },
+                {
+                    "date": 1644062469377,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n           image={media.m}\n           title='Contemplative Reptile'\n         />\n         <CardContent>\n-          <Typography gutterBottom variant='h3' component='h2'>\n+          <Typography gutterBottom variant='h6' component='h2'>\n           {author.length > 23 ? `${author.substring(0, 23)}..` : author}\n           </Typography>\n         </CardContent>\n       </CardActionArea>\n"
+                },
+                {
+                    "date": 1644062476733,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n           image={media.m}\n           title='Contemplative Reptile'\n         />\n         <CardContent>\n-          <Typography gutterBottom variant='h6' component='h2'>\n+          <Typography gutterBottom variant='subtitle1' component='h2'>\n           {author.length > 23 ? `${author.substring(0, 23)}..` : author}\n           </Typography>\n         </CardContent>\n       </CardActionArea>\n"
+                },
+                {
+                    "date": 1644062530205,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,11 +37,8 @@\n         </CardContent>\n       </CardActionArea>\n       <CardActions>\n         <Button size='small' color='primary'>\n-          Share\n-        </Button>\n-        <Button size='small' color='primary'>\n           Learn More\n         </Button>\n       </CardActions>\n     </Card>\n"
+                },
+                {
+                    "date": 1644062581112,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n import CardContent from '@material-ui/core/CardContent';\n import CardMedia from '@material-ui/core/CardMedia';\n import Button from '@material-ui/core/Button';\n import Typography from '@material-ui/core/Typography';\n+import Link from '@material-ui/core/Link';\n \n const useStyles = makeStyles({\n   root: {\n     width: 345,\n@@ -31,16 +32,16 @@\n           title='Contemplative Reptile'\n         />\n         <CardContent>\n           <Typography gutterBottom variant='subtitle1' component='h2'>\n-          {author.length > 23 ? `${author.substring(0, 23)}..` : author}\n+            {author.length > 23 ? `${author.substring(0, 23)}..` : author}\n           </Typography>\n         </CardContent>\n       </CardActionArea>\n       <CardActions>\n-        <Button size='small' color='primary'>\n-          Learn More\n-        </Button>\n+      <Link href='#' type=\"button\">\n+            Link\n+          </Link>\n       </CardActions>\n     </Card>\n   );\n };\n"
+                },
+                {
+                    "date": 1644062660995,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n });\n \n const FeedItem = ({ item }) => {\n   const classes = useStyles();\n-  const { media, title, tags, author } = item;\n+  const { media, tags, author, link } = item;\n \n   return (\n     <Card className={classes.root}>\n       <CardActionArea>\n@@ -34,14 +34,19 @@\n         <CardContent>\n           <Typography gutterBottom variant='subtitle1' component='h2'>\n             {author.length > 23 ? `${author.substring(0, 23)}..` : author}\n           </Typography>\n+          <Typography gutterBottom variant='body2' component='p'>\n+            {tags.length > 23 ? `${tags.substring(0, 23)}..` : tags}\n+          </Typography>\n         </CardContent>\n       </CardActionArea>\n       <CardActions>\n-      <Link href='#' type=\"button\">\n-            Link\n+        <Button size='small' color='primary'>\n+          <Link href={}>\n+            More\n           </Link>\n+        </Button>\n       </CardActions>\n     </Card>\n   );\n };\n"
+                },
+                {
+                    "date": 1644062670518,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,11 +41,9 @@\n         </CardContent>\n       </CardActionArea>\n       <CardActions>\n         <Button size='small' color='primary'>\n-          <Link href={}>\n-            More\n-          </Link>\n+          <Link href={link}>More</Link>\n         </Button>\n       </CardActions>\n     </Card>\n   );\n"
+                },
+                {
+                    "date": 1644062709491,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,8 +16,11 @@\n   },\n   media: {\n     height: 160,\n   },\n+  link: {\n+    textDecoration: 'none',\n+  },\n });\n \n const FeedItem = ({ item }) => {\n   const classes = useStyles();\n@@ -41,9 +44,11 @@\n         </CardContent>\n       </CardActionArea>\n       <CardActions>\n         <Button size='small' color='primary'>\n-          <Link href={link}>More</Link>\n+          <Link href={link} className={classes.link}>\n+            More\n+          </Link>\n         </Button>\n       </CardActions>\n     </Card>\n   );\n"
+                },
+                {
+                    "date": 1644062746183,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,11 @@\n   media: {\n     height: 160,\n   },\n   link: {\n-    textDecoration: 'none',\n+    '& :hover': {\n+      textDecoration: 'none',\n+    },\n   },\n });\n \n const FeedItem = ({ item }) => {\n"
+                },
+                {
+                    "date": 1644062758556,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,13 +16,8 @@\n   },\n   media: {\n     height: 160,\n   },\n-  link: {\n-    '& :hover': {\n-      textDecoration: 'none',\n-    },\n-  },\n });\n \n const FeedItem = ({ item }) => {\n   const classes = useStyles();\n@@ -46,9 +41,9 @@\n         </CardContent>\n       </CardActionArea>\n       <CardActions>\n         <Button size='small' color='primary'>\n-          <Link href={link} className={classes.link}>\n+          <Link href={link}>\n             More\n           </Link>\n         </Button>\n       </CardActions>\n"
+                },
+                {
+                    "date": 1644062773957,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,11 +34,8 @@\n         <CardContent>\n           <Typography gutterBottom variant='subtitle1' component='h2'>\n             {author.length > 23 ? `${author.substring(0, 23)}..` : author}\n           </Typography>\n-          <Typography gutterBottom variant='body2' component='p'>\n-            {tags.length > 23 ? `${tags.substring(0, 23)}..` : tags}\n-          </Typography>\n         </CardContent>\n       </CardActionArea>\n       <CardActions>\n         <Button size='small' color='primary'>\n"
+                },
+                {
+                    "date": 1644070587681,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,12 +37,10 @@\n           </Typography>\n         </CardContent>\n       </CardActionArea>\n       <CardActions>\n-        <Button size='small' color='primary'>\n-          <Link href={link}>\n-            More\n-          </Link>\n+        <Button color='primary' href={link}>\n+          More\n         </Button>\n       </CardActions>\n     </Card>\n   );\n"
+                },
+                {
+                    "date": 1644070645802,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n           title='Contemplative Reptile'\n         />\n         <CardContent>\n           <Typography gutterBottom variant='subtitle1' component='h2'>\n-            {author.length > 23 ? `${author.substring(0, 23)}..` : author}\n+            {author.length > 26 ? `${author.substring(0, 26)}..` : author}\n           </Typography>\n         </CardContent>\n       </CardActionArea>\n       <CardActions>\n"
+                },
+                {
+                    "date": 1644070669925,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n });\n \n const FeedItem = ({ item }) => {\n   const classes = useStyles();\n-  const { media, tags, author, link } = item;\n+  const { media, author, link } = item;\n \n   return (\n     <Card className={classes.root}>\n       <CardActionArea>\n"
+                }
+            ],
+            "date": 1644060699097,
+            "name": "Commit-0",
+            "content": "import React from 'react';\nimport { makeStyles } from '@material-ui/core/styles';\nimport Card from '@material-ui/core/Card';\nimport CardActionArea from '@material-ui/core/CardActionArea';\nimport CardActions from '@material-ui/core/CardActions';\nimport CardContent from '@material-ui/core/CardContent';\nimport CardMedia from '@material-ui/core/CardMedia';\nimport Button from '@material-ui/core/Button';\nimport Typography from '@material-ui/core/Typography';\n\nconst useStyles = makeStyles({\n  root: {\n    maxWidth: 345,\n  },\n  media: {\n    height: 140,\n  },\n});\n\nconst FeedItem = () => {\n  const classes = useStyles();\n\n  return (\n    <Card className={classes.root}>\n      <CardActionArea>\n        <CardMedia\n          className={classes.media}\n          image='https://www.opendatasoft.com/wp-content/uploads/2017/04/Amsterdam-energy-Atlas.jpg'\n          title='Contemplative Reptile'\n        />\n        <CardContent>\n          <Typography gutterBottom variant='h5' component='h2'>\n            Lizard\n          </Typography>\n          <Typography variant='body2' color='textSecondary' component='p'>\n            Lizards are a widespread group of squamate reptiles, with over 6,000\n            species, ranging across all continents except Antarctica\n          </Typography>\n        </CardContent>\n      </CardActionArea>\n      <CardActions>\n        <Button size='small' color='primary'>\n          Share\n        </Button>\n        <Button size='small' color='primary'>\n          Learn More\n        </Button>\n      </CardActions>\n    </Card>\n  );\n};\n\nexport default FeedItem;\n"
+        }
+    ]
+}

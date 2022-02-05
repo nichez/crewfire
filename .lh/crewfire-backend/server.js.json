@@ -1,0 +1,18 @@
+{
+    "sourceFile": "crewfire-backend/server.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1643910413848,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1643910413848,
+            "name": "Commit-0",
+            "content": "const express = require(\"express\");\nconst dotenv = require('dotenv');\nconst cors = require(\"cors\");\nconst HttpException = require('./app/utils/HttpException.utils');\nconst errorMiddleware = require('./app/middleware/error.middleware');\n\n// Init express\nconst app = express();\n// Init environment\ndotenv.config();\n// parse requests of content-type: application/json\n// parses incoming requests with JSON payloads\napp.use(express.json());\n// enabling cors for all requests by using cors middleware\napp.use(cors());\n// Enable pre-flight\napp.options(\"*\", cors());\n\nconst port = Number(process.env.PORT || 8080);\n\nvar routes = require('./app/routes/appRoutes');\nroutes(app);\n\n// 404 error\napp.all('*', (req, res, next) => {\n    const err = new HttpException(404, 'Endpoint Not Found');\n    next(err);\n});\n\n// Error middleware\napp.use(errorMiddleware);\n\n// starting the server\napp.listen(port, () =>\n    console.log(`🚀 Server running on port ${port}!`));\n\n\nmodule.exports = app;"
+        }
+    ]
+}

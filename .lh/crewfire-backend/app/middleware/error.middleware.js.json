@@ -1,0 +1,18 @@
+{
+    "sourceFile": "crewfire-backend/app/middleware/error.middleware.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1643910658001,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1643910658001,
+            "name": "Commit-0",
+            "content": "function errorMiddleware(error, req, res, next) {\n  let { status = 500, message, data } = error;\n\n  console.log(`[Error] ${error}`);\n\n  message = status === 500 || !message ? 'Internal server error' : message;\n\n  error = {\n    type: 'error',\n    status,\n    message,\n    ...(data && data),\n  };\n\n  res.status(status).send(error);\n}\n\nmodule.exports = errorMiddleware;\n"
+        }
+    ]
+}
